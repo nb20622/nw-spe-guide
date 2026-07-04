@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>午後試験 読解メソッド — ネスペ2026 合格教材</title>
+<meta name="description" content="ネットワークスペシャリスト午後試験の読解手順・設問型辞典・解答の書き方講座(添削例つき)・振り返りプロトコル。">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌐</text></svg>">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div id="site-header"></div>
+<main>
+
+<div class="pagehead">
+  <div class="kicker">試験対策 — 午後メソッド</div>
+  <h1>午後試験 読解メソッド</h1>
+  <p class="lede">合否はここで決まる。午後は「知識の試験」ではなく「問題文に埋まった根拠を、設問が求める型で書き出す試験」。この認識を、手順として実行できる技術に変える。</p>
+</div>
+
+<section id="rule1">
+  <div class="eyebrow"><span class="no">4-1</span><h2>鉄則 — 本文根拠主義</h2></div>
+  <p>IPAの解答例と採点講評を並べて読むと、一貫した採点思想が見える。求められているのは一般論ではなく、<strong>「この会社の、この構成の、この要件では」どうか</strong>だ。</p>
+  <ul>
+    <li>解答の材料は、本文の記述・<strong>構成図・IPアドレス表・FWルール表・注記</strong>の中にほぼ必ずある。</li>
+    <li>「なぜか」と問われたら、本文中の条件を引いて「〜という要件があるため」「この構成では〜となるから」の形で書く。</li>
+    <li><em>本文を一度も参照せずに書けた解答は疑え</em>。それはたいてい出題者の意図から外れている。</li>
+  </ul>
+  <div class="tip"><span class="tt">なぜこう断言できるか</span>採点講評には毎回「問題文に示した条件を読み取れていない解答が多かった」という趣旨の指摘が登場する。逆に言えば、本文の条件を拾って書くだけで受験者集団の上位に入れる。</div>
+</section>
+
+<section id="procedure">
+  <div class="eyebrow"><span class="no">4-2</span><h2>読解の手順(午後I: 1問45分)</h2></div>
+  <ol>
+    <li><strong>[3分] 設問を先に全部読む。</strong>「何を探しながら本文を読むか」が決まる。設問は本文の要約でもある。</li>
+    <li><strong>[5分] 図と表を先に押さえる。</strong>構成図の各機器と接続、IPアドレス表、FWルール表に目を通し、「どこからどこへ何の通信が流れる構成か」を掴む。</li>
+    <li><strong>[15分] 本文を段落ごとに読む。</strong>「現状」→「課題」→「新要件」→「変更案」という物語構造の切れ目を意識する。<em>下線部と空欄の前後1〜2文に解答根拠が集中する</em>。</li>
+    <li><strong>[20分] 解答を書く。</strong>字数指定の8割以上を埋める。主語と目的語を省かない。</li>
+    <li><strong>[2分] 見直し。</strong>設問の型と解答の型が一致しているか(下の4-3)。</li>
+  </ol>
+  <p><strong>午後II(1問120分)</strong>も手順は同じで、配分を約2.5倍にする(設問把握7分→図表10分→通読40分→記述55分→見直し8分)。本文は長いが、その分ヒントも多い。<em>長文は敵ではなく、根拠の在庫が多い味方</em>だと考える。</p>
+  <h3>問題選択の技術</h3>
+  <p>午後Iは3問中2問、午後IIは2問中1問を選ぶ。最初の5分で図表だけ眺め、<strong>自分の得意分野(基礎講座の何章に近いか)</strong>と<strong>設問の具体性</strong>(具体的な設問=根拠を拾いやすい)で決める。一度選んだら迷わない。途中変更は時間的に致命傷になる。</p>
+</section>
+
+<section id="types">
+  <div class="eyebrow"><span class="no">4-3</span><h2>設問型辞典 — 問われ方と書き方</h2></div>
+  <div class="tablewrap"><table>
+    <thead><tr><th>設問の型</th><th>解答の作り方</th></tr></thead>
+    <tbody>
+      <tr><td>「〜の理由を述べよ」</td><td>本文の条件+技術的因果で「〜ため」で結ぶ。理由を2つ求められたら観点を変える(性能と可用性、コストとセキュリティ等)</td></tr>
+      <tr><td>「〜の問題点を述べよ」</td><td>現構成のままだと何が起きるかを具体的に。「〜が単一障害点となり、故障時に〜が停止する」</td></tr>
+      <tr><td>「〜の目的を述べよ」</td><td>その設定・機器が「何を防ぐ/何を可能にする」かを書く。理由(原因側)と目的(結果側)を混同しない</td></tr>
+      <tr><td>「〜の設定内容を答えよ」</td><td>機器名・対象・値まで特定する。「L3SWのVLAN20のインタフェースにDHCPリレーを設定」</td></tr>
+      <tr><td>「本文中の字句を用いて」</td><td>必ず本文の表現をそのまま使う。言い換えは減点対象</td></tr>
+      <tr><td>「図中の機器名で答えよ」</td><td>図のラベル表記(FW1、L2SW3等)を正確に写す</td></tr>
+      <tr><td>「〜を○字以内で述べよ」</td><td>結論を先に、条件を後に。8割以上埋める。体言止めは避け「〜こと。」「〜ため。」で締める</td></tr>
+      <tr><td>計算問題</td><td>単位(bit/Byte、k/M/G)の変換を式で書いてから計算。<a href="ch05.html">第5章</a>・<a href="ch09.html">第9章</a>の計算例題で型を作る</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="writing">
+  <div class="eyebrow"><span class="no">4-4</span><h2>解答の書き方講座 — 添削で学ぶ</h2></div>
+  <p>同じ理解でも、書き方で点差がつく。ダメな解答→良い解答の差分を体で覚える。</p>
+
+  <div class="example">
+    <div class="exq"><span class="tt">添削例 1 — 主語と対象の省略</span>
+    設問:「サーバ移行の1週間前に、情報システム部が行っておくべきDNSの作業を35字以内で述べよ」(想定)</div>
+    <details open><summary>添削を見る</summary><div class="exa">
+      <p><span style="color:var(--danger);font-weight:700">✕「TTLを短くしておく」(10字)</span><br>
+      何のレコードのTTLか、なぜ1週間前かが不明。字数も余らせすぎ。</p>
+      <p><span style="color:var(--ok);font-weight:700">◯「移行対象サーバのAレコードのTTLを、現行の値より短く変更しておく」(33字)</span><br>
+      対象(Aレコード)+操作(短く変更)を特定。キャッシュが旧TTLで残る期間を考慮して「事前に」行う理由も示唆できている。</p>
+    </div></details>
+  </div>
+
+  <div class="example">
+    <div class="exq"><span class="tt">添削例 2 — 一般論で書いてしまう</span>
+    設問:「公開WebサーバをDMZに設置する理由を40字以内で述べよ」(想定)</div>
+    <details><summary>添削を見る</summary><div class="exa">
+      <p><span style="color:var(--danger);font-weight:700">✕「セキュリティを高めるため」(12字)</span><br>
+      何がどう安全になるのか不明。これは知識ゼロでも書ける=採点者に理解を示せていない。</p>
+      <p><span style="color:var(--ok);font-weight:700">◯「Webサーバが侵害されても、攻撃者が社内LANへ直接アクセスできないようにするため」(40字)</span><br>
+      「侵害される前提で被害を局所化する」というDMZの設計意図(<a href="ch08.html">第8章</a>)を因果で書いている。</p>
+    </div></details>
+  </div>
+
+  <div class="example">
+    <div class="exq"><span class="tt">添削例 3 — 因果の飛躍</span>
+    設問:「本社経由のインターネット接続をやめ、各拠点から直接SaaSに接続する構成に変更する利点を45字以内で述べよ」(想定)</div>
+    <details><summary>添削を見る</summary><div class="exa">
+      <p><span style="color:var(--danger);font-weight:700">✕「通信が速くなるため業務効率が上がる」(17字)</span><br>
+      「なぜ速くなるのか」の機構が抜けている。業務効率は設問が聞いていない余計な飛躍。</p>
+      <p><span style="color:var(--ok);font-weight:700">◯「SaaS宛て通信が本社のプロキシ・WAN回線を経由しなくなり、遅延と本社回線の負荷が減る」(44字)</span><br>
+      経路の変化(機構)→効果(遅延・負荷減)の順。<a href="ch12.html">第12章</a>のローカルブレイクアウトの定番論点。</p>
+    </div></details>
+  </div>
+
+  <h3>書き方の共通ルール</h3>
+  <ul>
+    <li><strong>結論ファースト</strong>: 「(結論)。なぜなら(本文の条件)ため。」の順で組む。</li>
+    <li><strong>機構を1ステップ入れる</strong>: 「AだからCになる」ではなく「AだからBが起き、Cになる」。</li>
+    <li><strong>用語は正確に</strong>: 「暗号化」と「認証」、「名前解決」と「経路制御」、「帯域」と「遅延」を混同した瞬間に0点になりうる。怪しくなったら<a href="glossary.html">用語集</a>。</li>
+  </ul>
+</section>
+
+<section id="review">
+  <div class="eyebrow"><span class="no">4-5</span><h2>振り返りプロトコル(1問ごとに必ず)</h2></div>
+  <p>過去問は「解くこと」ではなく「振り返ること」に価値がある。IPA公式の<strong>解答例</strong>と<strong>採点講評</strong>(受験者の誤答傾向まで書いてある一級資料。<a href="resources.html">無料</a>)で自己採点し、間違いを3分類して記録する。</p>
+  <ol>
+    <li><strong>知識不足</strong> → 基礎講座の該当章に戻り、章末テストを解き直す。</li>
+    <li><strong>読み違い・見落とし</strong> → 根拠がどの図表・段落にあったかを確認し、「次は最初にどこを見るか」を一行で言語化する。</li>
+    <li><strong>書き方の問題</strong>(理解していたのに減点) → 解答例の文型を書き写す。上の添削例に自分のケースを追加する。</li>
+  </ol>
+  <p>10問も続けると失点パターンは2〜3個に収束する。それがあなた専用の「直前チェックリスト」になる。</p>
+  <div class="tip"><span class="tt">自己採点の目安</span>解答例と「内容が一致」で満点、「観点は同じだが要素が半分」で半分、「観点がズレている」は潔く0点として数える。甘く採点すると本番で初めて現実を知ることになる。</div>
+</section>
+
+<section id="mapthemes">
+  <div class="eyebrow"><span class="no">4-6</span><h2>頻出テーマと学習の対応表</h2></div>
+  <div class="tablewrap"><table>
+    <thead><tr><th>頻出分野</th><th>午後で問われる形</th><th>対応する章</th></tr></thead>
+    <tbody>
+      <tr><td>セキュリティ</td><td>FWルール設計、DMZ、TLS、認証、攻撃対策(ほぼ毎回登場)</td><td><a href="ch08.html">第8章</a></td></tr>
+      <tr><td>Web・DNS</td><td>サーバ更改・移行手順、内外DNS分離、CDN、プロキシ</td><td><a href="ch06.html">第6章</a>・<a href="ch07.html">第7章</a></td></tr>
+      <tr><td>冗長化・可用性</td><td>SPOF指摘、VRRP、LB設計、切替後の経路</td><td><a href="ch09.html">第9章</a></td></tr>
+      <tr><td>L2/L3設計</td><td>VLAN割当、経路制御、アドレス設計</td><td><a href="ch02.html">第2章</a>〜<a href="ch04.html">第4章</a></td></tr>
+      <tr><td>クラウド接続</td><td>閉域vs VPN選定、ローカルブレイクアウト、マルチクラウド</td><td><a href="ch12.html">第12章</a></td></tr>
+      <tr><td>IPv6</td><td>アドレス設計、SLAAC/DHCPv6、移行(2025年度午後II)</td><td><a href="ch11.html">第11章</a></td></tr>
+      <tr><td>無線LAN</td><td>AP設計、認証方式、ゲスト分離</td><td><a href="ch10.html">第10章</a></td></tr>
+      <tr><td>DC・仮想化</td><td>VXLAN/EVPN、スパイン&リーフ(2024年度午後II)</td><td><a href="ch12.html">第12章</a></td></tr>
+      <tr><td>性能・計算</td><td>スループット、稼働率、必要帯域</td><td><a href="ch05.html">第5章</a>・<a href="ch09.html">第9章</a></td></tr>
+    </tbody>
+  </table></div>
+  <p>次のステップ: この型を<a href="pm-practice.html">オリジナル事例演習</a>で練習してから、IPA過去問の実戦に入る。</p>
+</section>
+
+</main>
+<div id="site-footer"></div>
+<script src="assets/site.js"></script>
+</body>
+</html>

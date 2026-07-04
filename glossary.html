@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>用語集 — ネスペ2026 合格教材</title>
+<meta name="description" content="ネットワークスペシャリスト試験の頻出用語159語をカテゴリ別に整理した辞書ページ。英字正式名と関連章リンク付き。">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌐</text></svg>">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div id="site-header"></div>
+<main>
+
+<div class="pagehead">
+  <div class="kicker">試験対策 — 辞書</div>
+  <h1>用語集</h1>
+  <p class="lede">試験頻出の159語をカテゴリ別に整理した。学習中に引く辞書として、直前期には「全部説明できるか」のチェックリストとして使える。定義だけで足りなければ「詳しくは」の章へ。</p>
+</div>
+
+<section id="index">
+  <div class="chips">
+    <span><a href="#cat-basic">レイヤ・基礎</a></span>
+    <span><a href="#cat-l2">L2・イーサネット</a></span>
+    <span><a href="#cat-ip">IP・ルーティング</a></span>
+    <span><a href="#cat-tp">トランスポート</a></span>
+    <span><a href="#cat-app">DNS・Web・メール</a></span>
+    <span><a href="#cat-sec">セキュリティ</a></span>
+    <span><a href="#cat-ha">冗長化・運用</a></span>
+    <span><a href="#cat-wlan">無線</a></span>
+    <span><a href="#cat-v6">IPv6</a></span>
+    <span><a href="#cat-cloud">クラウド・仮想化</a></span>
+  </div>
+  <div class="tip"><span class="tt">合格の視点</span>用語は「一言で言えて、隣の用語との違いが言える」状態がゴール。たとえばIDSとIPS、シェーピングとポリシング、SPFとDKIMのように、対になる語はセットで覚えると午前IIの言い換え問題に強くなる。腕試しは<a href="am2-drill.html">午前II模擬演習</a>で。</div>
+</section>
+
+<section id="cat-basic">
+  <div class="eyebrow"><span class="no">01</span><h2>レイヤ・基礎</h2></div>
+  <div class="tablewrap"><table>
+    <thead><tr><th>用語</th><th>意味</th><th>詳しくは</th></tr></thead>
+    <tbody>
+      <tr><td><b>OSI参照モデル</b><br><small>OSI Reference Model</small></td><td>通信機能を7階層(物理・データリンク・ネットワーク・トランスポート・セッション・プレゼンテーション・アプリケーション)に分けた概念モデル。「どの層の話か」を特定する共通言語として使う。</td><td><a href="ch01.html">第1章</a></td></tr>
+      <tr><td><b>TCP/IPモデル</b><br><small>TCP/IP Model</small></td><td>インターネットで実際に使われる4階層モデル(リンク・インターネット・トランスポート・アプリケーション)。OSIの7層と対応付けて理解する。</td><td><a href="ch01.html">第1章</a></td></tr>
+      <tr><td><b>カプセル化</b><br><small>Encapsulation</small></td><td>上位層のデータに各層のヘッダを付けて下位層へ渡すこと。受信側では逆順にヘッダを外していく。</td><td><a href="ch01.html">第1章</a></td></tr>
+      <tr><td><b>PDU</b><br><small>Protocol Data Unit</small></td><td>各層でやり取りされるデータの単位。L2はフレーム、L3はパケット、TCPはセグメントと呼び分ける。</td><td><a href="ch01.html">第1章</a></td></tr>
+      <tr><td><b>MTU</b><br><small>Maximum Transmission Unit</small></td><td>1回で送れるIPパケットの最大サイズ。イーサネットでは標準1,500バイト。超えるとフラグメント化または破棄される。</td><td><a href="ch03.html">第3章</a></td></tr>
+      <tr><td><b>RFC</b><br><small>Request for Comments</small></td><td>IETFが発行するインターネット標準の文書。プロトコル仕様の一次情報源。</td><td><a href="ch01.html">第1章</a></td></tr>
+      <tr><td><b>デフォルトゲートウェイ</b><br><small>Default Gateway</small></td><td>宛先が自分のセグメント外にあるとき、パケットを託すルータ。端末は宛先ではなくゲートウェイのMACアドレスを解決して送る。</td><td><a href="ch03.html">第3章</a></td></tr>
+      <tr><td><b>ユニキャスト/ブロードキャスト/マルチキャスト</b><br><small>Unicast / Broadcast / Multicast</small></td><td>1対1/同一セグメント内の全員宛/特定グループ宛という通信形態の分類。IPv6にブロードキャストは存在しない。</td><td><a href="ch01.html">第1章</a></td></tr>
+      <tr><td><b>スループット</b><br><small>Throughput</small></td><td>単位時間あたりに実際に転送できたデータ量。回線の理論値である帯域幅と区別する。</td><td><a href="ch05.html">第5章</a></td></tr>
+      <tr><td><b>RTT</b><br><small>Round Trip Time</small></td><td>パケットが相手に届いて応答が返るまでの往復時間。TCPのスループットを決める主要因。</td><td><a href="ch05.html">第5章</a></td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="cat-l2">
+  <div class="eyebrow"><span class="no">02</span><h2>L2・イーサネット</h2></div>
+  <div class="tablewrap"><table>
+    <thead><tr><th>用語</th><th>意味</th><th>詳しくは</th></tr></thead>
+    <tbody>
+      <tr><td><b>イーサネット</b><br><small>Ethernet / IEEE 802.3</small></td><td>有線LANの事実上の標準規格。データをフレームという単位で運ぶ。</td><td><a href="ch02.html">第2章</a></td></tr>
+      <tr><td><b>MACアドレス</b><br><small>Media Access Control Address</small></td><td>NICごとに割り当てられる48ビットのL2アドレス。先頭24ビットはベンダ識別子(OUI)。</td><td><a href="ch02.html">第2章</a></td></tr>
+      <tr><td><b>フレーム</b><br><small>Frame</small></td><td>L2のPDU。宛先/送信元MACアドレス・タイプ・データ・FCSで構成される。</td><td><a href="ch02.html">第2章</a></td></tr>
+      <tr><td><b>FCS</b><br><small>Frame Check Sequence</small></td><td>フレーム末尾の誤り検出符号(CRC)。受信側で破損フレームを検出して破棄する。</td><td><a href="ch02.html">第2章</a></td></tr>
+      <tr><td><b>L2スイッチ</b><br><small>Layer 2 Switch</small></td><td>MACアドレステーブルに基づき、フレームを必要なポートだけへ転送する装置。</td><td><a href="ch02.html">第2章</a></td></tr>
+      <tr><td><b>MACアドレステーブル</b><br><small>MAC Address Table</small></td><td>受信フレームの送信元MACと受信ポートの対応を学習した表。未学習の宛先はフラッディングする。</td><td><a href="ch02.html">第2章</a></td></tr>
+      <tr><td><b>ARP</b><br><small>Address Resolution Protocol</small></td><td>IPアドレスから対応するMACアドレスを調べるプロトコル。ブロードキャストで問い合わせ、ユニキャストで応答が返る。</td><td><a href="ch03.html">第3章</a></td></tr>
+      <tr><td><b>VLAN</b><br><small>Virtual LAN</small></td><td>1台のスイッチを論理的に複数のL2ネットワークに分割する技術。ブロードキャストドメインを分離できる。</td><td><a href="ch02.html">第2章</a></td></tr>
+      <tr><td><b>IEEE 802.1Q(タグVLAN)</b><br><small>IEEE 802.1Q</small></td><td>フレームに4バイトのVLANタグを挿入し、1本のリンクで複数VLANを多重する規格。VLAN IDは12ビット。</td><td><a href="ch02.html">第2章</a></td></tr>
+      <tr><td><b>トランクポート</b><br><small>Trunk Port</small></td><td>複数VLANのタグ付きフレームを通すスイッチ間リンク用ポート。1つのVLANだけを通すのはアクセスポート。</td><td><a href="ch02.html">第2章</a></td></tr>
+      <tr><td><b>STP</b><br><small>Spanning Tree Protocol / IEEE 802.1D</small></td><td>L2ネットワークのループを防ぐため、冗長リンクの一部を論理的にブロックするプロトコル。</td><td><a href="ch02.html">第2章</a></td></tr>
+      <tr><td><b>ルートブリッジ</b><br><small>Root Bridge</small></td><td>STPが作るツリーの根となるスイッチ。ブリッジプライオリティ(同値ならMACアドレス)が最小のものが選ばれる。</td><td><a href="ch02.html">第2章</a></td></tr>
+      <tr><td><b>BPDU</b><br><small>Bridge Protocol Data Unit</small></td><td>STPでスイッチ同士が交換する制御フレーム。ルートブリッジの選出やトポロジ変化の通知に使う。</td><td><a href="ch02.html">第2章</a></td></tr>
+      <tr><td><b>リンクアグリゲーション</b><br><small>Link Aggregation / LACP</small></td><td>複数の物理リンクを1本の論理リンクに束ね、帯域拡大と冗長化を図る技術。同一フローは同一リンクで運び順序逆転を防ぐ。</td><td><a href="ch02.html">第2章</a></td></tr>
+      <tr><td><b>PoE</b><br><small>Power over Ethernet / IEEE 802.3af・at・bt</small></td><td>LANケーブルで機器へ電力を供給する技術。無線AP・IP電話・監視カメラの給電に使う。</td><td><a href="ch02.html">第2章</a></td></tr>
+      <tr><td><b>ブロードキャストドメイン</b><br><small>Broadcast Domain</small></td><td>ブロードキャストフレームが届く範囲。ルータまたはVLANで分割する。</td><td><a href="ch02.html">第2章</a></td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="cat-ip">
+  <div class="eyebrow"><span class="no">03</span><h2>IP・ルーティング</h2></div>
+  <div class="tablewrap"><table>
+    <thead><tr><th>用語</th><th>意味</th><th>詳しくは</th></tr></thead>
+    <tbody>
+      <tr><td><b>IPv4アドレス</b><br><small>IPv4 Address</small></td><td>32ビットのL3アドレス。ネットワーク部とホスト部から成り、プレフィックス長で境界を示す。</td><td><a href="ch03.html">第3章</a></td></tr>
+      <tr><td><b>サブネットマスク</b><br><small>Subnet Mask</small></td><td>IPアドレスのどこまでがネットワーク部かを示すビット列。/24=255.255.255.0。</td><td><a href="ch03.html">第3章</a></td></tr>
+      <tr><td><b>CIDR</b><br><small>Classless Inter-Domain Routing</small></td><td>クラスにとらわれず任意のプレフィックス長でアドレスを割り当て・集約する方式。</td><td><a href="ch03.html">第3章</a></td></tr>
+      <tr><td><b>ネットワークアドレス</b><br><small>Network Address</small></td><td>ホスト部のビットがすべて0のアドレス。サブネットそのものを指す。ホストには割り当てない。</td><td><a href="ch03.html">第3章</a></td></tr>
+      <tr><td><b>ブロードキャストアドレス</b><br><small>Broadcast Address</small></td><td>ホスト部のビットがすべて1のアドレス。サブネット内の全ホスト宛を意味する。</td><td><a href="ch03.html">第3章</a></td></tr>
+      <tr><td><b>プライベートIPアドレス</b><br><small>Private IP Address / RFC 1918</small></td><td>組織内で自由に使えるアドレス(10.0.0.0/8、172.16.0.0/12、192.168.0.0/16)。インターネットへ出るときはNATで変換する。</td><td><a href="ch03.html">第3章</a></td></tr>
+      <tr><td><b>NAT</b><br><small>Network Address Translation</small></td><td>IPアドレスを別のアドレスに変換する技術の総称。1対1の静的NATは公開サーバに使う。</td><td><a href="ch03.html">第3章</a></td></tr>
+      <tr><td><b>NAPT</b><br><small>Network Address Port Translation</small></td><td>ポート番号も併せて変換し、多数の端末で1つのグローバルIPを共有する方式。IPマスカレードとも呼ぶ。</td><td><a href="ch03.html">第3章</a></td></tr>
+      <tr><td><b>DHCP</b><br><small>Dynamic Host Configuration Protocol</small></td><td>IPアドレスやゲートウェイなどの設定を端末へ自動配布するプロトコル。別セグメントへはDHCPリレーで中継する。</td><td><a href="ch03.html">第3章</a></td></tr>
+      <tr><td><b>ICMP</b><br><small>Internet Control Message Protocol</small></td><td>エラー通知や疎通確認(ping)に使うIPの補助プロトコル。tracerouteもICMPの応答を利用する。</td><td><a href="ch03.html">第3章</a></td></tr>
+      <tr><td><b>TTL</b><br><small>Time To Live</small></td><td>IPヘッダのフィールドで、ルータを通過するたびに1減る。0になるとパケットは破棄され、ループを防ぐ。</td><td><a href="ch03.html">第3章</a></td></tr>
+      <tr><td><b>ルーティングテーブル</b><br><small>Routing Table</small></td><td>宛先ネットワークとネクストホップ(次の転送先)の対応表。ルータはこれを引いてパケットを転送する。</td><td><a href="ch04.html">第4章</a></td></tr>
+      <tr><td><b>ロンゲストマッチ</b><br><small>Longest Match</small></td><td>宛先が複数の経路に一致する場合、プレフィックス長が最も長い(範囲が最も狭い)経路を優先する規則。</td><td><a href="ch04.html">第4章</a></td></tr>
+      <tr><td><b>デフォルトルート</b><br><small>Default Route</small></td><td>0.0.0.0/0の経路。どの経路にも一致しない宛先の最後の受け皿。</td><td><a href="ch04.html">第4章</a></td></tr>
+      <tr><td><b>スタティックルーティング</b><br><small>Static Routing</small></td><td>管理者が手動で経路を設定する方式。動作が確実で小規模向きだが、構成変更や障害に自動追従しない。</td><td><a href="ch04.html">第4章</a></td></tr>
+      <tr><td><b>ダイナミックルーティング</b><br><small>Dynamic Routing</small></td><td>ルータ同士が経路情報を交換し、経路を自動で計算・更新する方式。OSPFやBGPが代表。</td><td><a href="ch04.html">第4章</a></td></tr>
+      <tr><td><b>OSPF</b><br><small>Open Shortest Path First</small></td><td>リンクステート型のIGP。LSAでトポロジ情報を共有し、コスト最小の経路をダイクストラ法で計算する。</td><td><a href="ch04.html">第4章</a></td></tr>
+      <tr><td><b>エリア(OSPF)</b><br><small>OSPF Area</small></td><td>OSPFのネットワーク分割単位。エリア0(バックボーン)に他のエリアが接続する階層構造をとる。</td><td><a href="ch04.html">第4章</a></td></tr>
+      <tr><td><b>BGP</b><br><small>Border Gateway Protocol</small></td><td>AS間で経路情報を交換するパスベクトル型プロトコル。ASパスなどの属性でポリシーに基づく経路選択を行う。</td><td><a href="ch04.html">第4章</a></td></tr>
+      <tr><td><b>AS</b><br><small>Autonomous System</small></td><td>単一の管理ポリシーで運用されるネットワークの集合。AS番号で識別され、BGPの経路交換の単位になる。</td><td><a href="ch04.html">第4章</a></td></tr>
+      <tr><td><b>経路集約</b><br><small>Route Aggregation</small></td><td>複数の経路を1つの短いプレフィックスにまとめ、経路数とルータの負荷を減らすこと。</td><td><a href="ch04.html">第4章</a></td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="cat-tp">
+  <div class="eyebrow"><span class="no">04</span><h2>トランスポート</h2></div>
+  <div class="tablewrap"><table>
+    <thead><tr><th>用語</th><th>意味</th><th>詳しくは</th></tr></thead>
+    <tbody>
+      <tr><td><b>TCP</b><br><small>Transmission Control Protocol</small></td><td>コネクション型で信頼性のあるデータ転送を提供するトランスポート層プロトコル。再送・順序・輻輳制御を備える。</td><td><a href="ch05.html">第5章</a></td></tr>
+      <tr><td><b>UDP</b><br><small>User Datagram Protocol</small></td><td>コネクションレスで軽量なトランスポート層プロトコル。再送や順序制御をせず、リアルタイム通信やDNSに向く。</td><td><a href="ch05.html">第5章</a></td></tr>
+      <tr><td><b>ポート番号</b><br><small>Port Number</small></td><td>通信相手のアプリケーションを識別する16ビットの番号。IPアドレスが「建物」ならポートは「部屋番号」。</td><td><a href="ch05.html">第5章</a></td></tr>
+      <tr><td><b>ウェルノウンポート</b><br><small>Well-known Ports</small></td><td>0〜1023の予約済みポート番号。80=HTTP、443=HTTPS、25=SMTP、53=DNSなど。</td><td><a href="ch05.html">第5章</a></td></tr>
+      <tr><td><b>3ウェイハンドシェイク</b><br><small>Three-way Handshake</small></td><td>SYN→SYN/ACK→ACKの3セグメントでTCPコネクションを確立する手順。双方のシーケンス番号初期値を確認し合う。</td><td><a href="ch05.html">第5章</a></td></tr>
+      <tr><td><b>シーケンス番号</b><br><small>Sequence Number</small></td><td>TCPで送信データのバイト位置を示す番号。順序の保証と再送の判断に使う。</td><td><a href="ch05.html">第5章</a></td></tr>
+      <tr><td><b>ウィンドウ制御</b><br><small>Sliding Window</small></td><td>確認応答を待たずに送れるデータ量(ウィンドウ)を管理する仕組み。スループットの上限はウィンドウサイズ÷RTT。</td><td><a href="ch05.html">第5章</a></td></tr>
+      <tr><td><b>輻輳制御</b><br><small>Congestion Control</small></td><td>ネットワークの混雑を推定して送信量を調整する制御。小さく始めて指数的に増やすスロースタートが代表。</td><td><a href="ch05.html">第5章</a></td></tr>
+      <tr><td><b>再送制御</b><br><small>Retransmission</small></td><td>確認応答が返らないセグメントを送り直す仕組み。タイムアウトや重複ACKの受信が契機になる。</td><td><a href="ch05.html">第5章</a></td></tr>
+      <tr><td><b>MSS</b><br><small>Maximum Segment Size</small></td><td>TCPセグメントに載せられるデータの最大長。MTUからIP・TCPヘッダ分を引いた値で、イーサネットでは1,460バイト。</td><td><a href="ch05.html">第5章</a></td></tr>
+      <tr><td><b>ソケット</b><br><small>Socket</small></td><td>IPアドレスとポート番号の組で表される通信の端点。この組が一致する通信は同じコネクションに属する。</td><td><a href="ch05.html">第5章</a></td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="cat-app">
+  <div class="eyebrow"><span class="no">05</span><h2>DNS・Web・メール</h2></div>
+  <div class="tablewrap"><table>
+    <thead><tr><th>用語</th><th>意味</th><th>詳しくは</th></tr></thead>
+    <tbody>
+      <tr><td><b>DNS</b><br><small>Domain Name System</small></td><td>ドメイン名とIPアドレスを対応付ける世界規模の分散データベース。階層的な委任で管理される。</td><td><a href="ch06.html">第6章</a></td></tr>
+      <tr><td><b>FQDN</b><br><small>Fully Qualified Domain Name</small></td><td>ホスト名からルートまですべての階層を記述した完全なドメイン名。例: www.example.co.jp</td><td><a href="ch06.html">第6章</a></td></tr>
+      <tr><td><b>権威DNSサーバ</b><br><small>Authoritative DNS Server</small></td><td>自分が管理するゾーンの情報を正式に応答するサーバ。キャッシュ応答ではなく「原本」を持つ側。</td><td><a href="ch06.html">第6章</a></td></tr>
+      <tr><td><b>フルサービスリゾルバ</b><br><small>Full-service Resolver</small></td><td>端末に代わって名前解決を行い、結果をキャッシュして応答するサーバ。キャッシュDNSサーバとも呼ぶ。</td><td><a href="ch06.html">第6章</a></td></tr>
+      <tr><td><b>再帰的問合せ/反復問合せ</b><br><small>Recursive / Iterative Query</small></td><td>端末→リゾルバは「最終結果を返して」と頼む再帰的問合せ、リゾルバ→権威サーバはルートから順にたどる反復問合せ。</td><td><a href="ch06.html">第6章</a></td></tr>
+      <tr><td><b>リソースレコード</b><br><small>Resource Record</small></td><td>DNSに登録する情報の単位。A(IPv4)、AAAA(IPv6)、CNAME(別名)、MX(メール配送先)、NS(委任先)、PTR(逆引き)、TXTなど。</td><td><a href="ch06.html">第6章</a></td></tr>
+      <tr><td><b>TTL(DNS)</b><br><small>Time To Live</small></td><td>リソースレコードをキャッシュしてよい秒数。サーバ移転の前には短くしておくのが定石。</td><td><a href="ch06.html">第6章</a></td></tr>
+      <tr><td><b>ゾーン転送</b><br><small>Zone Transfer</small></td><td>プライマリ権威サーバからセカンダリへゾーン情報を複製すること。転送先は制限しないと情報漏えいにつながる。</td><td><a href="ch06.html">第6章</a></td></tr>
+      <tr><td><b>DNSラウンドロビン</b><br><small>DNS Round Robin</small></td><td>1つの名前に複数のAレコードを登録し、応答順を巡回させる簡易負荷分散。サーバの死活は考慮しない。</td><td><a href="ch06.html">第6章</a></td></tr>
+      <tr><td><b>HTTP</b><br><small>Hypertext Transfer Protocol</small></td><td>Webのアプリケーション層プロトコル。要求(メソッド)と応答(ステータスコード)のやり取りで成り立つ。</td><td><a href="ch07.html">第7章</a></td></tr>
+      <tr><td><b>HTTPS</b><br><small>HTTP over TLS</small></td><td>TLSで暗号化したHTTP。TCP443番を使い、サーバ認証・暗号化・改ざん検知を提供する。</td><td><a href="ch07.html">第7章</a></td></tr>
+      <tr><td><b>Cookie</b><br><small>HTTP Cookie</small></td><td>サーバがブラウザに保存させる小さなデータ。状態を持たないHTTPでセッション管理を実現する。</td><td><a href="ch07.html">第7章</a></td></tr>
+      <tr><td><b>プロキシサーバ</b><br><small>Proxy Server</small></td><td>クライアントに代わってWebアクセスを中継するサーバ。アクセス制御・ログ取得・キャッシュを担う。</td><td><a href="ch07.html">第7章</a></td></tr>
+      <tr><td><b>リバースプロキシ</b><br><small>Reverse Proxy</small></td><td>サーバ側に置かれ、外部からの要求を受けて背後のWebサーバへ振り分ける中継サーバ。TLS終端や負荷分散も担う。</td><td><a href="ch07.html">第7章</a></td></tr>
+      <tr><td><b>CDN</b><br><small>Content Delivery Network</small></td><td>各地に配置したキャッシュサーバから、利用者に近い場所でコンテンツを配信する仕組み。原本を持つサーバをオリジンと呼ぶ。</td><td><a href="ch07.html">第7章</a></td></tr>
+      <tr><td><b>SMTP</b><br><small>Simple Mail Transfer Protocol</small></td><td>メールの送信とサーバ間転送のプロトコル。サーバ間はTCP25、クライアントからの投稿は587(サブミッション)を使う。</td><td><a href="ch07.html">第7章</a></td></tr>
+      <tr><td><b>POP3</b><br><small>Post Office Protocol version 3</small></td><td>メールボックスから端末へメールをダウンロードする受信プロトコル。基本はサーバにメールを残さない。</td><td><a href="ch07.html">第7章</a></td></tr>
+      <tr><td><b>IMAP</b><br><small>Internet Message Access Protocol</small></td><td>サーバ上のメールボックスを直接操作する受信プロトコル。複数端末から同じメールを参照できる。</td><td><a href="ch07.html">第7章</a></td></tr>
+      <tr><td><b>SPF</b><br><small>Sender Policy Framework</small></td><td>送信元IPアドレスが、そのドメインの正規メールサーバかをDNSの宣言と照合して検証する送信ドメイン認証。</td><td><a href="ch07.html">第7章</a></td></tr>
+      <tr><td><b>DKIM</b><br><small>DomainKeys Identified Mail</small></td><td>メールにデジタル署名を付け、受信側がDNSで公開された鍵で送信ドメインの正当性と改ざんの有無を検証する仕組み。</td><td><a href="ch07.html">第7章</a></td></tr>
+      <tr><td><b>DMARC</b><br><small>Domain-based Message Authentication, Reporting and Conformance</small></td><td>SPF/DKIMの検証結果を踏まえた失敗時の取扱い(隔離・拒否など)を、送信側ドメインがDNSで宣言する仕組み。</td><td><a href="ch07.html">第7章</a></td></tr>
+      <tr><td><b>OP25B</b><br><small>Outbound Port 25 Blocking</small></td><td>ISPが動的IPアドレスからの外向きTCP25番通信を遮断する迷惑メール対策。正規の送信は587番+認証で行う。</td><td><a href="ch07.html">第7章</a></td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="cat-sec">
+  <div class="eyebrow"><span class="no">06</span><h2>セキュリティ</h2></div>
+  <div class="tablewrap"><table>
+    <thead><tr><th>用語</th><th>意味</th><th>詳しくは</th></tr></thead>
+    <tbody>
+      <tr><td><b>ファイアウォール</b><br><small>Firewall</small></td><td>IPアドレスやポート番号などのルールに基づき、通信の通過可否を制御する境界防御装置。</td><td><a href="ch08.html">第8章</a></td></tr>
+      <tr><td><b>ステートフルインスペクション</b><br><small>Stateful Inspection</small></td><td>許可したコネクションの状態を記録し、対応する戻り方向のパケットを動的に許可するFWの方式。</td><td><a href="ch08.html">第8章</a></td></tr>
+      <tr><td><b>DMZ</b><br><small>DeMilitarized Zone</small></td><td>外部にも内部にも属さない公開サーバ用セグメント。公開サーバが侵害されても内部LANへ直接届かせないための緩衝地帯。</td><td><a href="ch08.html">第8章</a></td></tr>
+      <tr><td><b>IDS</b><br><small>Intrusion Detection System</small></td><td>不正侵入や攻撃の兆候を検知して通知するシステム。ミラーポートで通信の写しを検査する構成が典型。</td><td><a href="ch08.html">第8章</a></td></tr>
+      <tr><td><b>IPS</b><br><small>Intrusion Prevention System</small></td><td>通信経路上(インライン)に設置し、不正と判定した通信をその場で遮断するシステム。</td><td><a href="ch08.html">第8章</a></td></tr>
+      <tr><td><b>WAF</b><br><small>Web Application Firewall</small></td><td>HTTPメッセージの内容を検査し、SQLインジェクションなどWebアプリケーションへの攻撃を遮断する防御装置。</td><td><a href="ch08.html">第8章</a></td></tr>
+      <tr><td><b>UTM</b><br><small>Unified Threat Management</small></td><td>FW・IPS・アンチウイルス・URLフィルタなど複数のセキュリティ機能を1台に統合した装置。</td><td><a href="ch08.html">第8章</a></td></tr>
+      <tr><td><b>共通鍵暗号方式</b><br><small>Symmetric Key Cryptography</small></td><td>暗号化と復号に同じ鍵を使う方式。高速だが鍵の受渡し(鍵配送)が課題。AESが代表。</td><td><a href="ch08.html">第8章</a></td></tr>
+      <tr><td><b>公開鍵暗号方式</b><br><small>Public Key Cryptography</small></td><td>公開鍵と秘密鍵のペアを使う方式。鍵配送問題を解決するが計算が遅い。RSAや楕円曲線暗号が代表。</td><td><a href="ch08.html">第8章</a></td></tr>
+      <tr><td><b>ハイブリッド暗号</b><br><small>Hybrid Encryption</small></td><td>データ本体は共通鍵で暗号化し、その共通鍵を公開鍵暗号で安全に受け渡す方式。TLSの基本構造。</td><td><a href="ch08.html">第8章</a></td></tr>
+      <tr><td><b>ハッシュ関数</b><br><small>Hash Function</small></td><td>任意長のデータから固定長の要約値を作る一方向関数。SHA-256など。完全性の検証に使う。</td><td><a href="ch08.html">第8章</a></td></tr>
+      <tr><td><b>デジタル署名</b><br><small>Digital Signature</small></td><td>ハッシュ値を送信者の秘密鍵で暗号化したもの。公開鍵で検証でき、改ざん検知と作成者の証明になる。機密性は提供しない。</td><td><a href="ch08.html">第8章</a></td></tr>
+      <tr><td><b>認証局(CA)</b><br><small>Certification Authority</small></td><td>公開鍵の持ち主を保証するデジタル証明書を発行する機関。</td><td><a href="ch08.html">第8章</a></td></tr>
+      <tr><td><b>PKI</b><br><small>Public Key Infrastructure</small></td><td>証明書と認証局を軸に、公開鍵が本人のものであることを社会的に担保する基盤。</td><td><a href="ch08.html">第8章</a></td></tr>
+      <tr><td><b>TLS</b><br><small>Transport Layer Security</small></td><td>通信の暗号化・改ざん検知・サーバ認証を提供するプロトコル。HTTPSをはじめ多くのプロトコルの土台。</td><td><a href="ch08.html">第8章</a></td></tr>
+      <tr><td><b>IPsec</b><br><small>Security Architecture for Internet Protocol</small></td><td>IP層で暗号化・認証を行うプロトコル群。拠点間VPNの定番で、暗号化を担うESPなどから成る。</td><td><a href="ch08.html">第8章</a></td></tr>
+      <tr><td><b>IKE</b><br><small>Internet Key Exchange</small></td><td>IPsecで使う暗号鍵を安全に交換・管理するためのプロトコル。</td><td><a href="ch08.html">第8章</a></td></tr>
+      <tr><td><b>トンネルモード/トランスポートモード</b><br><small>Tunnel / Transport Mode</small></td><td>IPsecの2つの動作モード。トンネルは元のIPヘッダごと保護して新ヘッダを付ける(VPN向き)、トランスポートはペイロードのみ保護。</td><td><a href="ch08.html">第8章</a></td></tr>
+      <tr><td><b>VPN</b><br><small>Virtual Private Network</small></td><td>公衆網の上に暗号化と認証で仮想的な専用網を作る技術。IPsec-VPNとSSL-VPNが2大方式。</td><td><a href="ch08.html">第8章</a></td></tr>
+      <tr><td><b>SSL-VPN</b><br><small>SSL/TLS VPN</small></td><td>TLSを使うリモートアクセスVPN。TCP443を使うためFWを通過しやすく、ブラウザだけで使える方式もある。</td><td><a href="ch08.html">第8章</a></td></tr>
+      <tr><td><b>IEEE 802.1X</b><br><small>Port-Based Network Access Control</small></td><td>LAN接続時にポート単位で認証を行う規格。サプリカント・オーセンティケータ・認証サーバで構成し、有線・無線両方で使える。</td><td><a href="ch08.html">第8章</a></td></tr>
+      <tr><td><b>RADIUS</b><br><small>Remote Authentication Dial In User Service</small></td><td>認証・認可・課金を集中管理するプロトコル。802.1Xや無線LANエンタープライズ認証の認証サーバに使う。</td><td><a href="ch08.html">第8章</a></td></tr>
+      <tr><td><b>DoS/DDoS攻撃</b><br><small>Denial of Service / Distributed DoS</small></td><td>大量の通信や仕様の悪用でサービスを妨害する攻撃。多数の踏み台から一斉に行うのがDDoS。</td><td><a href="ch08.html">第8章</a></td></tr>
+      <tr><td><b>SYNフラッド攻撃</b><br><small>SYN Flood Attack</small></td><td>SYNだけを大量に送って応答を放置し、サーバの接続待ちリソースを枯渇させるDoS攻撃。</td><td><a href="ch08.html">第8章</a></td></tr>
+      <tr><td><b>DNSキャッシュポイズニング</b><br><small>DNS Cache Poisoning</small></td><td>偽のDNS応答をキャッシュサーバに注入し、利用者を偽サイトへ誘導する攻撃。ポートランダム化やDNSSECで対策する。</td><td><a href="ch08.html">第8章</a></td></tr>
+      <tr><td><b>DNSSEC</b><br><small>DNS Security Extensions</small></td><td>DNS応答にデジタル署名を付け、応答の出所と完全性を検証できるようにするDNSの拡張。</td><td><a href="ch06.html">第6章</a></td></tr>
+      <tr><td><b>リフレクション攻撃(DNSアンプ攻撃)</b><br><small>Reflection / Amplification Attack</small></td><td>送信元を攻撃対象に詐称した問合せをオープンリゾルバなどへ送り、増幅された応答を対象に集中させるDDoS手法。</td><td><a href="ch08.html">第8章</a></td></tr>
+      <tr><td><b>ゼロトラスト</b><br><small>Zero Trust</small></td><td>「境界の内側だから信頼する」をやめ、アクセスのたびに認証・認可・検証を行う設計思想。</td><td><a href="ch08.html">第8章</a></td></tr>
+      <tr><td><b>SSH</b><br><small>Secure Shell</small></td><td>暗号化されたリモートログイン・ファイル転送のプロトコル。TCP22番。機器の管理アクセスにも使う。</td><td><a href="ch08.html">第8章</a></td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="cat-ha">
+  <div class="eyebrow"><span class="no">07</span><h2>冗長化・運用</h2></div>
+  <div class="tablewrap"><table>
+    <thead><tr><th>用語</th><th>意味</th><th>詳しくは</th></tr></thead>
+    <tbody>
+      <tr><td><b>SPOF</b><br><small>Single Point of Failure</small></td><td>単一障害点。そこが故障するとシステム全体が停止する箇所。冗長化で排除する。</td><td><a href="ch09.html">第9章</a></td></tr>
+      <tr><td><b>稼働率</b><br><small>Availability</small></td><td>システムが利用可能な時間の割合。直列構成は積、並列構成は「1−全滅する確率」で計算する。</td><td><a href="ch09.html">第9章</a></td></tr>
+      <tr><td><b>MTBF/MTTR</b><br><small>Mean Time Between Failures / Mean Time To Repair</small></td><td>平均故障間隔と平均修理時間。稼働率=MTBF÷(MTBF+MTTR)。</td><td><a href="ch09.html">第9章</a></td></tr>
+      <tr><td><b>VRRP</b><br><small>Virtual Router Redundancy Protocol</small></td><td>複数のルータで仮想IPアドレスを共有し、デフォルトゲートウェイを冗長化するプロトコル。マスタ障害時はバックアップが引き継ぐ。</td><td><a href="ch09.html">第9章</a></td></tr>
+      <tr><td><b>ロードバランサ</b><br><small>Load Balancer</small></td><td>複数のサーバへ通信を振り分ける装置。L4(ポートまで見る)とL7(HTTPの中身まで見る)の方式がある。</td><td><a href="ch09.html">第9章</a></td></tr>
+      <tr><td><b>ヘルスチェック</b><br><small>Health Check</small></td><td>負荷分散の振り分け先サーバが正常に応答するかを定期的に確認する仕組み。異常なサーバは振り分けから外す。</td><td><a href="ch09.html">第9章</a></td></tr>
+      <tr><td><b>パーシステンス</b><br><small>Persistence / Session Affinity</small></td><td>同一クライアントからの一連の通信を同じサーバへ振り分け続けること。ログイン状態の維持に必要。</td><td><a href="ch09.html">第9章</a></td></tr>
+      <tr><td><b>SNMP</b><br><small>Simple Network Management Protocol</small></td><td>ネットワーク機器の監視・管理プロトコル。監視する側がマネージャ、される側がエージェント。</td><td><a href="ch09.html">第9章</a></td></tr>
+      <tr><td><b>MIB</b><br><small>Management Information Base</small></td><td>SNMPエージェントが持つ管理情報のデータベース。マネージャはここから値を取得して監視する。</td><td><a href="ch09.html">第9章</a></td></tr>
+      <tr><td><b>SNMPトラップ</b><br><small>SNMP Trap</small></td><td>障害などの事象をエージェント側からマネージャへ自発的に通知するメッセージ。ポーリングと対になる。</td><td><a href="ch09.html">第9章</a></td></tr>
+      <tr><td><b>syslog</b><br><small>Syslog</small></td><td>機器のログメッセージをログサーバへ集約転送する仕組み。障害解析や監査の基礎データになる。</td><td><a href="ch09.html">第9章</a></td></tr>
+      <tr><td><b>NTP</b><br><small>Network Time Protocol</small></td><td>機器の時刻を基準サーバに同期させるプロトコル。複数機器のログを突き合わせる前提になる。</td><td><a href="ch09.html">第9章</a></td></tr>
+      <tr><td><b>QoS</b><br><small>Quality of Service</small></td><td>音声など重要な通信の帯域・遅延・廃棄を制御して品質を守る技術の総称。優先制御と帯域制御が柱。</td><td><a href="ch09.html">第9章</a></td></tr>
+      <tr><td><b>DiffServ/DSCP</b><br><small>Differentiated Services / DS Code Point</small></td><td>IPヘッダのDSCP値でパケットをクラス分けし、ルータごとに決めた処理(PHB)で優先制御する方式。</td><td><a href="ch09.html">第9章</a></td></tr>
+      <tr><td><b>シェーピング/ポリシング</b><br><small>Shaping / Policing</small></td><td>帯域制御の2方式。シェーピングは超過分をバッファして送出を平滑化し、ポリシングは超過分を廃棄またはマーキングする。</td><td><a href="ch09.html">第9章</a></td></tr>
+      <tr><td><b>NetFlow/sFlow</b><br><small>NetFlow / sFlow</small></td><td>「誰がどこへどれだけ通信したか」というフロー情報を収集・分析する技術。トラフィックの見える化に使う。</td><td><a href="ch09.html">第9章</a></td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="cat-wlan">
+  <div class="eyebrow"><span class="no">08</span><h2>無線</h2></div>
+  <div class="tablewrap"><table>
+    <thead><tr><th>用語</th><th>意味</th><th>詳しくは</th></tr></thead>
+    <tbody>
+      <tr><td><b>IEEE 802.11</b><br><small>IEEE 802.11</small></td><td>無線LANの標準規格ファミリ。802.11ax=Wi-Fi 6のように世代名が付けられている。</td><td><a href="ch10.html">第10章</a></td></tr>
+      <tr><td><b>アクセスポイント(AP)</b><br><small>Access Point</small></td><td>無線端末を有線LANに接続する基地局。設置設計ではチャネルと出力の調整が肝になる。</td><td><a href="ch10.html">第10章</a></td></tr>
+      <tr><td><b>SSID</b><br><small>Service Set Identifier</small></td><td>無線LANの論理ネットワークを識別する名前。1台のAPで複数のSSIDを運用できる。</td><td><a href="ch10.html">第10章</a></td></tr>
+      <tr><td><b>CSMA/CA</b><br><small>Carrier Sense Multiple Access with Collision Avoidance</small></td><td>無線LANのアクセス制御方式。送信前の確認とランダム待ちで衝突を避け、ACKで到達を確認する。</td><td><a href="ch10.html">第10章</a></td></tr>
+      <tr><td><b>2.4GHz帯/5GHz帯/6GHz帯</b><br><small>Frequency Bands</small></td><td>無線LANが使う周波数帯。2.4GHzは干渉が多く遠くまで届く。5GHzはチャネルが豊富だがDFS対象あり。6GHzはWi-Fi 6Eから。</td><td><a href="ch10.html">第10章</a></td></tr>
+      <tr><td><b>チャネル</b><br><small>Channel</small></td><td>周波数帯を分割した通信の単位。2.4GHz帯で互いに干渉しないのは3チャネル程度で、隣接APと重ねない設計が必要。</td><td><a href="ch10.html">第10章</a></td></tr>
+      <tr><td><b>DFS</b><br><small>Dynamic Frequency Selection</small></td><td>レーダ波を検出したら自動的にチャネルを変更する機能。5GHz帯のW53/W56チャネルで義務付けられている。</td><td><a href="ch10.html">第10章</a></td></tr>
+      <tr><td><b>WPA2/WPA3</b><br><small>Wi-Fi Protected Access 2 / 3</small></td><td>無線LANのセキュリティ規格。WPA3はSAEという鍵交換の採用でオフライン辞書攻撃への耐性を高めた。</td><td><a href="ch10.html">第10章</a></td></tr>
+      <tr><td><b>エンタープライズモード</b><br><small>WPA2/WPA3-Enterprise</small></td><td>IEEE 802.1XとRADIUSで利用者ごとに認証する企業向けの無線認証方式。パスフレーズ共有のPersonalと対比される。</td><td><a href="ch10.html">第10章</a></td></tr>
+      <tr><td><b>ローミング</b><br><small>Roaming</small></td><td>端末が移動しながら接続先APを切り替えること。同一SSID・同一セグメントで設計すると通信が途切れにくい。</td><td><a href="ch10.html">第10章</a></td></tr>
+      <tr><td><b>無線LANコントローラ(WLC)</b><br><small>Wireless LAN Controller</small></td><td>多数のAPの設定・チャネル・認証を集中管理する装置。大規模オフィスの無線設計で登場する。</td><td><a href="ch10.html">第10章</a></td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="cat-v6">
+  <div class="eyebrow"><span class="no">09</span><h2>IPv6</h2></div>
+  <div class="tablewrap"><table>
+    <thead><tr><th>用語</th><th>意味</th><th>詳しくは</th></tr></thead>
+    <tbody>
+      <tr><td><b>IPv6</b><br><small>Internet Protocol version 6</small></td><td>128ビットアドレスを持つ次世代IP。基本ヘッダは40バイト固定長で、途中のルータはフラグメント化を行わない。</td><td><a href="ch11.html">第11章</a></td></tr>
+      <tr><td><b>リンクローカルアドレス</b><br><small>Link-local Address</small></td><td>fe80::/10で始まる、同一リンク内だけで有効なアドレス。IPv6インタフェースは必ず1つ持つ。</td><td><a href="ch11.html">第11章</a></td></tr>
+      <tr><td><b>グローバルユニキャストアドレス</b><br><small>Global Unicast Address</small></td><td>2000::/3の範囲の、インターネット上で一意なIPv6アドレス。IPv4のグローバルIPに相当する。</td><td><a href="ch11.html">第11章</a></td></tr>
+      <tr><td><b>SLAAC</b><br><small>Stateless Address Autoconfiguration</small></td><td>RAで広告されたプレフィックスとインタフェースIDから、端末が自分でアドレスを生成する自動設定。サーバ不要。</td><td><a href="ch11.html">第11章</a></td></tr>
+      <tr><td><b>RA</b><br><small>Router Advertisement</small></td><td>ルータが定期的または要請に応じて広告する、プレフィックスやデフォルトルータなどの情報。NDPのメッセージの一つ。</td><td><a href="ch11.html">第11章</a></td></tr>
+      <tr><td><b>NDP</b><br><small>Neighbor Discovery Protocol</small></td><td>ARPの後継にあたるIPv6の近隣探索プロトコル。ICMPv6のマルチキャストでアドレス解決や重複検出(DAD)を行う。</td><td><a href="ch11.html">第11章</a></td></tr>
+      <tr><td><b>DHCPv6</b><br><small>Dynamic Host Configuration Protocol for IPv6</small></td><td>IPv6でアドレスやDNSサーバ情報をサーバ管理で配布する仕組み。SLAACと併用する構成もある。</td><td><a href="ch11.html">第11章</a></td></tr>
+      <tr><td><b>デュアルスタック</b><br><small>Dual Stack</small></td><td>1つの機器・ネットワークでIPv4とIPv6を並行して動かす移行方式。両方の設定・運用が必要になる。</td><td><a href="ch11.html">第11章</a></td></tr>
+      <tr><td><b>IPv4 over IPv6</b><br><small>MAP-E / DS-Lite</small></td><td>IPv6網の上にIPv4パケットをトンネルで通す移行技術。国内の光回線サービスで広く使われている。</td><td><a href="ch11.html">第11章</a></td></tr>
+      <tr><td><b>エニーキャスト</b><br><small>Anycast</small></td><td>同じアドレスを複数拠点に配置し、経路制御で最寄りの拠点へ届ける方式。ルートDNSサーバなどで使われる。</td><td><a href="ch11.html">第11章</a></td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="cat-cloud">
+  <div class="eyebrow"><span class="no">10</span><h2>クラウド・仮想化</h2></div>
+  <div class="tablewrap"><table>
+    <thead><tr><th>用語</th><th>意味</th><th>詳しくは</th></tr></thead>
+    <tbody>
+      <tr><td><b>仮想化</b><br><small>Virtualization</small></td><td>物理資源を論理的に分割・統合して使う技術。サーバ仮想化ではハイパーバイザ上で複数の仮想マシンを動かす。</td><td><a href="ch12.html">第12章</a></td></tr>
+      <tr><td><b>仮想スイッチ</b><br><small>Virtual Switch</small></td><td>ハイパーバイザ内で仮想マシン同士や外部ネットワークを接続するソフトウェアのL2スイッチ。</td><td><a href="ch12.html">第12章</a></td></tr>
+      <tr><td><b>VXLAN</b><br><small>Virtual eXtensible Local Area Network</small></td><td>L2フレームをUDPでカプセル化し、L3ネットワーク上に論理的なL2ネットワークを作る技術。24ビットのVNIで約1,677万セグメントを識別。</td><td><a href="ch12.html">第12章</a></td></tr>
+      <tr><td><b>VTEP</b><br><small>VXLAN Tunnel End Point</small></td><td>VXLANのカプセル化と復元を行うトンネルの終端点。物理スイッチにも仮想スイッチにも置ける。</td><td><a href="ch12.html">第12章</a></td></tr>
+      <tr><td><b>EVPN</b><br><small>Ethernet VPN</small></td><td>BGPを使ってMACアドレスなどの到達情報を交換する、VXLANの制御プレーン。フラッディングに頼らない学習を実現する。</td><td><a href="ch12.html">第12章</a></td></tr>
+      <tr><td><b>SDN</b><br><small>Software-Defined Networking</small></td><td>制御プレーンをコントローラに集中させ、ソフトウェアでネットワークを構成・制御する考え方。OpenFlowが代表的なプロトコル。</td><td><a href="ch12.html">第12章</a></td></tr>
+      <tr><td><b>NFV</b><br><small>Network Functions Virtualization</small></td><td>ルータやFWなどのネットワーク機能を、専用機ではなく汎用サーバ上の仮想アプライアンスとして動かすこと。</td><td><a href="ch12.html">第12章</a></td></tr>
+      <tr><td><b>SD-WAN</b><br><small>Software-Defined WAN</small></td><td>拠点間WANをソフトウェアで集中制御する技術。インターネット回線と閉域網の使い分け(ローカルブレイクアウト)などを実現する。</td><td><a href="ch12.html">第12章</a></td></tr>
+      <tr><td><b>IaaS/PaaS/SaaS</b><br><small>Infrastructure / Platform / Software as a Service</small></td><td>クラウドの提供形態の分類。事業者がインフラまで・実行環境まで・アプリケーションまでのどこを提供するかの違い。</td><td><a href="ch12.html">第12章</a></td></tr>
+      <tr><td><b>VPC</b><br><small>Virtual Private Cloud</small></td><td>パブリッククラウド内に作る利用者専用の仮想ネットワーク。サブネット設計やルーティングは利用者が行う。</td><td><a href="ch12.html">第12章</a></td></tr>
+      <tr><td><b>SWG</b><br><small>Secure Web Gateway</small></td><td>利用者のWebアクセスをクラウド上で中継し、URLフィルタやマルウェア検査を行うプロキシサービス。</td><td><a href="ch12.html">第12章</a></td></tr>
+      <tr><td><b>CASB</b><br><small>Cloud Access Security Broker</small></td><td>クラウドサービスの利用状況を可視化し、ポリシーに基づいて制御する仲介の仕組み。シャドーIT対策にも使う。</td><td><a href="ch12.html">第12章</a></td></tr>
+      <tr><td><b>SASE</b><br><small>Secure Access Service Edge</small></td><td>SD-WANなどのネットワーク機能と、SWG・CASBなどのセキュリティ機能をクラウド上で統合提供するモデル。</td><td><a href="ch12.html">第12章</a></td></tr>
+    </tbody>
+  </table></div>
+  <div class="tip"><span class="tt">合格の視点</span>この用語集の語を一通り「一言で説明できる」なら、午前IIの知識問題はかなり戦える。仕上げに<a href="am2-drill.html">午前II模擬演習50問</a>で問われ方に慣れ、午後対策は<a href="pm-guide.html">読解メソッド</a>へ進もう。</div>
+</section>
+
+</main>
+<div id="site-footer"></div>
+<script src="assets/site.js"></script>
+</body>
+</html>

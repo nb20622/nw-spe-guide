@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>教材・リンク集・出典 — ネスペ2026 合格教材</title>
+<meta name="description" content="IPA公式過去問の使い方、過去問道場、推奨書籍、本教材の全出典。">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌐</text></svg>">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div id="site-header"></div>
+<main>
+
+<div class="pagehead">
+  <div class="kicker">試験対策 — 資料</div>
+  <h1>教材・リンク集・出典</h1>
+  <p class="lede">本教材の外で使うもの。最重要はIPA公式過去問(無料)。書籍は「最小で戦う」構成を推す。</p>
+</div>
+
+<section id="free">
+  <div class="eyebrow"><span class="no">R-1</span><h2>無料リソース(必須)</h2></div>
+  <div class="card">
+    <h4 style="margin-top:0">IPA 公式過去問題・解答例・採点講評</h4>
+    <p><a href="https://www.ipa.go.jp/shiken/mondai-kaiotu/index.html">https://www.ipa.go.jp/shiken/mondai-kaiotu/index.html</a></p>
+    <p style="margin-bottom:0">この試験の最重要教材。年度ごとに<strong>問題冊子・解答例・採点講評</strong>の3点セットで公開されている。IPAは過去問の利用に許諾不要と明言しており、すべて無料。<br><strong>使い方:</strong> 午後問題は必ず「解く→解答例で採点→採点講評で誤答傾向を確認」の3点セットで使う(<a href="pm-guide.html#review">振り返りプロトコル</a>)。採点講評には「受験者の多くが〜を読み取れていなかった」という出題者の肉声が載っており、これを読むだけで答案の書き方が変わる。</p>
+  </div>
+  <div class="card">
+    <h4 style="margin-top:0">ネットワークスペシャリスト過去問道場</h4>
+    <p><a href="https://www.nw-siken.com/nwkakomon.php">https://www.nw-siken.com/nwkakomon.php</a></p>
+    <p style="margin-bottom:0">午前II過去問(約400問)を無料でランダム演習できる定番サイト。スマホでのスキマ時間演習に最適。<strong>使い方:</strong> Phase 2(8月)から1日20〜30問。まず本サイトの<a href="am2-drill.html">模擬50問</a>で分野の穴を見つけ、道場で量を回す。正答率8割で維持モードへ。</p>
+  </div>
+</section>
+
+<section id="books">
+  <div class="eyebrow"><span class="no">R-2</span><h2>書籍 — 最小構成で戦う</h2></div>
+  <p>本教材の基礎講座12章が教科書役を務めるので、書籍は<strong>「入門の補強1冊+午後過去問解説2〜3冊」</strong>の最小構成でよい。以下はWeb調査で現行版を確認済みのもの。</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>時期</th><th>書籍</th><th>役割</th></tr></thead>
+    <tbody>
+      <tr><td>Phase 1<br>(任意)</td><td>『マスタリングTCP/IP 入門編』または『3分間ネットワーク基礎講座』</td><td>基礎講座と並走する入門書。活字の通読で動作イメージを補強したい人向け。教材だけで足りるなら省略可</td></tr>
+      <tr><td>Phase 1〜4<br>(任意)</td><td>『徹底攻略 ネットワークスペシャリスト教科書 令和8年度』(インプレス)</td><td>網羅型の教科書。通読せず<b>辞書として</b>使う。教材で疑問が残った箇所の深掘り用</td></tr>
+      <tr><td>Phase 3<br>(推奨)</td><td>『ネスペR7 — 本物のネットワークスペシャリストになるための最も詳しい過去問解説』ほか、左門至峰「ネスペ」シリーズ(年度別)</td><td>午後過去問1年分を徹底解説するシリーズ。解答根拠の拾い方・部分点の取り方を学ぶ午後対策の定番。直近2〜3年度分やると効果大</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="video">
+  <div class="eyebrow"><span class="no">R-3</span><h2>動画・ツール</h2></div>
+  <ul>
+    <li><strong>YouTube解説動画</strong> — 「<a href="https://www.youtube.com/results?search_query=%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF%E3%82%B9%E3%83%9A%E3%82%B7%E3%83%A3%E3%83%AA%E3%82%B9%E3%83%88+%E5%8D%88%E5%BE%8C+%E8%A7%A3%E8%AA%AC">ネットワークスペシャリスト 午後 解説</a>」で年度別・分野別の解説が見つかる。通勤中の復習用。</li>
+    <li><strong>Wireshark(無料)</strong> — パケットキャプチャ。<a href="strategy.html#hands">§2-5</a>の観察実験に。DNS→TCP→TLSの流れを一度実物で見ると午後のシーケンス図が怖くなくなる。</li>
+    <li><strong>OS標準コマンド</strong> — <code>ipconfig /all</code>・<code>tracert</code>・<code>nslookup</code>・<code>netstat</code>。すべて<a href="strategy.html#hands">§2-5</a>参照。</li>
+  </ul>
+</section>
+
+<section id="official">
+  <div class="eyebrow"><span class="no">R-4</span><h2>受験手続き関連(要定期確認)</h2></div>
+  <ul>
+    <li><a href="https://www.ipa.go.jp/shiken/kubun/nw.html">IPA ネットワークスペシャリスト試験ページ</a> — 2026年度前期試験(CBT)の日程・申込情報はここに出る。<strong>毎月1日にチェック</strong>。</li>
+  </ul>
+  <div class="tip"><span class="tt">申込時の2つの忘れ物防止</span>①<strong>午前I免除の申請</strong>(応用情報合格を申告。<a href="exam.html#menjo">§1-2</a>) ②受験手数料の支払期限。CBT移行初年度は手続きが従来と変わる可能性があるので案内をよく読むこと。</div>
+</section>
+
+<section id="sources">
+  <div class="eyebrow"><span class="no">R-5</span><h2>本教材の出典・調査情報</h2></div>
+  <p>試験制度・統計・出題実績・書籍情報は、2026年7月4日時点のWeb調査(Codexによる検索・確認)に基づく。技術解説・戦略・演習問題はClaudeによる書き下ろし(執筆分担: 基礎講座・演習はサブエージェント並列執筆+統括レビュー)。</p>
+  <ul class="srcs">
+    <li>IPA ネットワークスペシャリスト試験(制度・形式) — https://www.ipa.go.jp/shiken/kubun/nw.html</li>
+    <li>IPA 2026年度 実施予定(CBT移行・前期試験) — https://www.ipa.go.jp/shiken/2026/ap_koudo_sc_yotei.html / https://www.ipa.go.jp/shiken/2026/ap_koudo_sc-cbt.html</li>
+    <li>IPA 令和7年度春期試験案内(試験日・手数料) — https://www.ipa.go.jp/shiken/2025/r07haru_exam.html</li>
+    <li>IPA 試験要綱 Ver.5.5(合格基準・多段階選抜・出題範囲) — https://www.ipa.go.jp/shiken/syllabus/omgdg50000005kle-att/youkou_ver5_5.pdf</li>
+    <li>IPA NWシラバス Ver.4.1 — https://www.ipa.go.jp/shiken/syllabus/nq6ept00000014fp-att/syllabus_nw_ver4_1.pdf</li>
+    <li>IPA 午前I試験免除制度 — https://www.ipa.go.jp/shiken/about/koudo_menjo.html</li>
+    <li>IPA 統計情報(応募者・合格率・平均年齢) — https://www.ipa.go.jp/shiken/reports/toukei.html</li>
+    <li>IPA 過去問題・解答例・採点講評 — https://www.ipa.go.jp/shiken/mondai-kaiotu/index.html</li>
+    <li>IPA 令和7年度春期 NW午後I/II問題冊子(2025年度出題テーマ) — https://www.ipa.go.jp/shiken/mondai-kaiotu/2025r07.html</li>
+    <li>IPA 2024・2023年度春期 NW午後問題冊子(出題テーマ) — 同上の年度別ページより</li>
+    <li>ネットワークスペシャリスト過去問道場 — https://www.nw-siken.com/nwkakomon.php</li>
+    <li>ネットワークスペシャリスト.com 参考書情報(ネスペR7・徹底攻略 令和8年度) — https://www.nw-siken.com/nwtext.html</li>
+  </ul>
+  <p class="caption">試験制度は変更されることがある。特にCBT移行初年度のため、受験前に必ずIPA公式の最新発表を確認すること。</p>
+</section>
+
+</main>
+<div id="site-footer"></div>
+<script src="assets/site.js"></script>
+</body>
+</html>

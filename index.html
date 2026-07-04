@@ -3,847 +3,109 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ネスペ2026 — 未経験からのネットワークスペシャリスト合格教材</title>
-<meta name="description" content="ネットワーク未経験から2026年11月のネットワークスペシャリスト試験(CBT)合格を目指す自習教材。試験制度・4ヶ月ロードマップ・基礎講座8章・午後攻略。">
-<style>
-:root{
-  --bg:#F6F8F5; --panel:#FFFFFF; --ink:#202B30; --muted:#5D6C71; --line:#DCE3DE;
-  --accent:#0E7C86; --accent-strong:#0A5960; --accent-soft:#E3F0F1;
-  --warm:#B05A0A; --warm-bg:#FAF0E2; --warm-line:#EBD9BF;
-  --code-bg:#EDF1EE; --chip:#EDF3F1; --shadow:0 1px 3px rgba(32,43,48,.08);
-  --ok:#2E7D46; --danger:#B3423A;
-}
-:root[data-theme="dark"]{
-  --bg:#0F171B; --panel:#16222A; --ink:#D8E3E1; --muted:#8DA0A2; --line:#263740;
-  --accent:#48BBC6; --accent-strong:#83D5DD; --accent-soft:#12333A;
-  --warm:#E39A50; --warm-bg:#2B2013; --warm-line:#4A3418;
-  --code-bg:#1B2B33; --chip:#1C2E36; --shadow:0 1px 3px rgba(0,0,0,.4);
-  --ok:#5FBF7E; --danger:#E07A72;
-}
-@media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]){
-    --bg:#0F171B; --panel:#16222A; --ink:#D8E3E1; --muted:#8DA0A2; --line:#263740;
-    --accent:#48BBC6; --accent-strong:#83D5DD; --accent-soft:#12333A;
-    --warm:#E39A50; --warm-bg:#2B2013; --warm-line:#4A3418;
-    --code-bg:#1B2B33; --chip:#1C2E36; --shadow:0 1px 3px rgba(0,0,0,.4);
-    --ok:#5FBF7E; --danger:#E07A72;
-  }
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth; scroll-padding-top:64px}
-@media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} *{animation:none!important;transition:none!important} }
-body{
-  margin:0; background:var(--bg); color:var(--ink);
-  font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP","Yu Gothic UI","Yu Gothic",Meiryo,system-ui,sans-serif;
-  font-size:16px; line-height:1.9; -webkit-text-size-adjust:100%;
-}
-code,pre,.mono{font-family:ui-monospace,"SF Mono","Cascadia Mono","Consolas",Menlo,monospace}
-a{color:var(--accent); text-decoration:none}
-a:hover{text-decoration:underline}
-a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var(--accent); outline-offset:2px; border-radius:3px}
-
-/* ---- header ---- */
-.topbar{
-  position:sticky; top:0; z-index:50; background:var(--panel);
-  border-bottom:1px solid var(--line); box-shadow:var(--shadow);
-  display:flex; align-items:center; gap:10px; padding:10px 14px;
-}
-.topbar .brand{font-weight:800; font-size:15px; letter-spacing:.02em; flex:1; min-width:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
-.topbar .brand .yr{color:var(--accent); font-weight:800}
-.iconbtn{
-  background:none; border:1px solid var(--line); color:var(--ink); border-radius:8px;
-  padding:6px 10px; font-size:13px; cursor:pointer; line-height:1.4; flex-shrink:0;
-}
-.iconbtn:hover{border-color:var(--accent); color:var(--accent)}
-
-/* ---- nav drawer ---- */
-#toc{
-  position:fixed; top:49px; right:0; bottom:0; width:min(320px,88vw); z-index:49;
-  background:var(--panel); border-left:1px solid var(--line);
-  transform:translateX(105%); transition:transform .25s ease;
-  overflow-y:auto; padding:18px 20px 40px;
-}
-#toc.open{transform:translateX(0)}
-#toc .toc-group{font-size:11px; font-weight:700; letter-spacing:.14em; color:var(--muted); text-transform:uppercase; margin:18px 0 6px}
-#toc a{display:block; padding:6px 8px; border-radius:6px; color:var(--ink); font-size:14px}
-#toc a:hover{background:var(--accent-soft); text-decoration:none}
-#toc a .no{color:var(--accent); font-weight:700; font-size:12px; margin-right:8px}
-#scrim{position:fixed; inset:0; z-index:48; background:rgba(15,23,27,.45); opacity:0; pointer-events:none; transition:opacity .25s}
-#scrim.show{opacity:1; pointer-events:auto}
-
-/* ---- layout ---- */
-main{max-width:760px; margin:0 auto; padding:0 18px 80px}
-section{margin-top:56px}
-.eyebrow{
-  display:flex; align-items:baseline; gap:10px; border-bottom:2px solid var(--accent);
-  padding-bottom:8px; margin-bottom:20px;
-}
-.eyebrow .no{font-family:ui-monospace,Menlo,monospace; color:var(--accent); font-weight:700; font-size:14px; letter-spacing:.08em}
-h1{font-size:clamp(26px,6vw,38px); line-height:1.35; margin:.2em 0; text-wrap:balance; font-weight:800}
-h2{font-size:clamp(21px,5vw,26px); line-height:1.4; margin:0; text-wrap:balance; font-weight:800}
-h3{font-size:18px; margin:34px 0 10px; font-weight:700; text-wrap:balance}
-h3 .h3tag{color:var(--accent); margin-right:6px}
-h4{font-size:15.5px; margin:24px 0 6px; font-weight:700}
-p{margin:.7em 0}
-ul,ol{padding-left:1.4em; margin:.6em 0}
-li{margin:.35em 0}
-strong{font-weight:700}
-em{font-style:normal; font-weight:700; background:linear-gradient(transparent 68%, var(--accent-soft) 68%)}
-hr{border:none; border-top:1px solid var(--line); margin:40px 0}
-
-/* ---- hero ---- */
-.hero{padding:44px 0 8px}
-.hero .kicker{font-size:12.5px; font-weight:700; letter-spacing:.18em; color:var(--accent); text-transform:uppercase}
-.hero .lede{color:var(--muted); font-size:15.5px; margin-top:10px}
-.statrow{display:grid; grid-template-columns:repeat(auto-fit,minmax(130px,1fr)); gap:10px; margin-top:22px}
-.stat{background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:12px 14px; box-shadow:var(--shadow)}
-.stat .v{font-size:22px; font-weight:800; font-variant-numeric:tabular-nums; line-height:1.3}
-.stat .v small{font-size:13px; font-weight:600; color:var(--muted)}
-.stat .k{font-size:12px; color:var(--muted); margin-top:2px}
-.stat.hot .v{color:var(--accent)}
-
-/* ---- components ---- */
-.card{background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:18px 20px; margin:16px 0; box-shadow:var(--shadow)}
-.tablewrap{overflow-x:auto; margin:14px 0; border:1px solid var(--line); border-radius:10px; background:var(--panel)}
-table{border-collapse:collapse; width:100%; font-size:14px; min-width:480px}
-th,td{padding:9px 12px; text-align:left; border-bottom:1px solid var(--line); vertical-align:top; line-height:1.7}
-thead th{background:var(--accent-soft); color:var(--accent-strong); font-size:12.5px; letter-spacing:.04em; white-space:nowrap}
-tbody tr:last-child td{border-bottom:none}
-td.num,th.num{text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap}
-.tip{
-  background:var(--warm-bg); border:1px solid var(--warm-line); border-radius:10px;
-  padding:14px 16px; margin:16px 0; font-size:14.5px;
-}
-.tip .tt{display:block; font-weight:800; color:var(--warm); font-size:12.5px; letter-spacing:.1em; margin-bottom:4px}
-.exam{
-  background:var(--accent-soft); border:1px solid var(--line); border-left:4px solid var(--accent);
-  border-radius:0 10px 10px 0; padding:13px 16px; margin:16px 0; font-size:14.5px;
-}
-.exam .tt{display:block; font-weight:800; color:var(--accent-strong); font-size:12.5px; letter-spacing:.1em; margin-bottom:4px}
-.chips{display:flex; flex-wrap:wrap; gap:7px; margin:12px 0}
-.chips span{
-  background:var(--chip); border:1px solid var(--line); border-radius:999px;
-  padding:3px 12px; font-size:13px; line-height:1.7; white-space:nowrap;
-}
-pre.topo{
-  background:var(--code-bg); border:1px solid var(--line); border-radius:10px;
-  padding:14px 16px; overflow-x:auto; font-size:12.5px; line-height:1.55; margin:14px 0;
-}
-code{background:var(--code-bg); border-radius:4px; padding:1px 5px; font-size:.88em}
-pre code{background:none; padding:0}
-.caption{font-size:12.5px; color:var(--muted); margin-top:-6px; margin-bottom:14px}
-
-/* layers diagram */
-.layers{display:grid; gap:6px; margin:14px 0}
-.layer{display:grid; grid-template-columns:44px 1fr; border:1px solid var(--line); border-radius:8px; overflow:hidden; background:var(--panel); font-size:13.5px}
-.layer .ln{display:flex; align-items:center; justify-content:center; background:var(--accent-soft); color:var(--accent-strong); font-weight:800; font-family:ui-monospace,Menlo,monospace}
-.layer .lb{padding:8px 12px; line-height:1.6}
-.layer .lb b{display:block}
-.layer .lb small{color:var(--muted)}
-
-/* roadmap */
-.phase{border-left:3px solid var(--accent); padding:2px 0 6px 18px; margin:22px 0; position:relative}
-.phase::before{content:""; position:absolute; left:-8px; top:6px; width:13px; height:13px; border-radius:50%; background:var(--accent); border:3px solid var(--bg)}
-.phase .ph{font-weight:800; font-size:16px}
-.phase .pw{color:var(--muted); font-size:13px; font-weight:700; letter-spacing:.04em}
-.goalbox{background:var(--chip); border-radius:8px; padding:10px 14px; font-size:14px; margin:10px 0}
-.goalbox b{color:var(--accent-strong)}
-
-/* quiz */
-details.qa{background:var(--panel); border:1px solid var(--line); border-radius:10px; margin:12px 0; overflow:hidden}
-details.qa summary{padding:14px 16px; cursor:pointer; font-weight:700; font-size:14.5px; line-height:1.8; list-style:none; position:relative; padding-right:38px}
-details.qa summary::after{content:"＋"; position:absolute; right:14px; top:12px; color:var(--accent); font-weight:800}
-details.qa[open] summary::after{content:"－"}
-details.qa summary::-webkit-details-marker{display:none}
-details.qa .ans{padding:0 16px 14px; font-size:14.5px; border-top:1px dashed var(--line)}
-details.qa .ans .a{font-weight:800; color:var(--ok)}
-.qopts{list-style:none; padding:4px 16px 12px; margin:0; font-size:14.5px}
-.qopts li{margin:.3em 0}
-.qopts li b{font-family:ui-monospace,Menlo,monospace; color:var(--accent); margin-right:6px}
-
-footer{border-top:1px solid var(--line); margin-top:70px; padding:26px 18px 60px; color:var(--muted); font-size:13px; text-align:center}
-.srcs{font-size:13.5px; word-break:break-all}
-.srcs li{margin:.5em 0}
-.badge-cbt{display:inline-block; background:var(--accent); color:#fff; border-radius:6px; font-size:11.5px; font-weight:800; padding:2px 8px; vertical-align:2px; letter-spacing:.06em}
-:root[data-theme="dark"] .badge-cbt{color:#0F171B}
-@media (max-width:560px){
-  body{font-size:15.5px}
-  .card{padding:15px 15px}
-  main{padding:0 14px 70px}
-}
-</style>
+<title>ネスペ2026 合格教材 — 未経験からのネットワークスペシャリスト</title>
+<meta name="description" content="ネットワーク未経験から2026年11月のネットワークスペシャリスト試験(CBT)合格を目指す全19ページの自習教材。基礎講座12章+試験戦略+午後対策+演習。">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌐</text></svg>">
+<link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
-
-<div class="topbar">
-  <div class="brand">ネスペ<span class="yr">2026</span> 合格教材</div>
-  <button class="iconbtn" id="themeBtn" aria-label="テーマ切替">☀/☾</button>
-  <button class="iconbtn" id="menuBtn" aria-expanded="false" aria-controls="toc">目次</button>
-</div>
-<div id="scrim"></div>
-<nav id="toc" aria-label="目次">
-  <div class="toc-group">はじめに</div>
-  <a href="#hero"><span class="no">--</span>この教材について</a>
-  <div class="toc-group">試験と戦略</div>
-  <a href="#exam"><span class="no">§1</span>試験を知る(制度・データ)</a>
-  <a href="#strategy"><span class="no">§2</span>合格戦略 — 未経験者の戦い方</a>
-  <a href="#roadmap"><span class="no">§3</span>4ヶ月ロードマップ</a>
-  <div class="toc-group">基礎講座(全8章)</div>
-  <a href="#ch1"><span class="no">第1章</span>ネットワークの全体像とレイヤ</a>
-  <a href="#ch2"><span class="no">第2章</span>イーサネットとスイッチング</a>
-  <a href="#ch3"><span class="no">第3章</span>IPとルーティング</a>
-  <a href="#ch4"><span class="no">第4章</span>TCPとUDP</a>
-  <a href="#ch5"><span class="no">第5章</span>アプリケーション層プロトコル</a>
-  <a href="#ch6"><span class="no">第6章</span>ネットワークセキュリティ</a>
-  <a href="#ch7"><span class="no">第7章</span>冗長化・可用性・運用管理</a>
-  <a href="#ch8"><span class="no">第8章</span>無線LAN・IPv6・クラウド時代の技術</a>
-  <div class="toc-group">試験対策</div>
-  <a href="#pm"><span class="no">§4</span>午後試験 完全攻略</a>
-  <a href="#quiz"><span class="no">§5</span>ミニ演習(午前II風)</a>
-  <a href="#resources"><span class="no">§6</span>教材・リソース集</a>
-  <a href="#sources"><span class="no">§7</span>出典</a>
-</nav>
-
+<div id="site-header"></div>
 <main>
 
-<!-- ================= HERO ================= -->
-<section class="hero" id="hero">
+<section class="hero">
   <div class="kicker">Network Specialist Examination 2026</div>
   <h1>ネットワーク未経験から、<br>ネスペ合格へ。</h1>
-  <p class="lede">IPA ネットワークスペシャリスト試験(NW)に、ネットワーク実務未経験から挑むための自習教材。2026年度は試験がCBT方式へ移行し、<strong>2026年11月頃</strong>に実施予定 — 今(2026年7月)から約4ヶ月で仕上げる前提で設計しています。</p>
+  <p class="lede">IPA ネットワークスペシャリスト試験(NW)に約4ヶ月で挑む自習教材。基礎講座12章・演習・午後攻略メソッドを1つのサイトにまとめた。事実はすべてWeb調査(Codex)で確認済み、カリキュラムと戦略はあなたの状況——<strong>応用情報合格済み・ネットワーク実務未経験</strong>——に合わせて設計してある。</p>
   <div class="statrow">
-    <div class="stat hot"><div class="v">11月<small>頃</small></div><div class="k">2026年度 前期試験(CBT) 実施予定</div></div>
-    <div class="stat"><div class="v">17.8<small>%</small></div><div class="k">合格率(2025年度春期)</div></div>
-    <div class="stat"><div class="v">60<small>点</small></div><div class="k">合格基準(全区分共通/100点)</div></div>
-    <div class="stat"><div class="v">7,500<small>円</small></div><div class="k">受験手数料(2025年度実績)</div></div>
+    <div class="stat hot"><div class="v">11月<small>頃</small></div><div class="k">2026年度 前期試験(CBT)実施予定</div></div>
+    <div class="stat"><div class="v">午前I<small> 免除</small></div><div class="k">AP合格済み→申請で受験不要</div></div>
+    <div class="stat"><div class="v">17.8<small>%</small></div><div class="k">合格率(2025年度)</div></div>
+    <div class="stat"><div class="v">60<small>点</small></div><div class="k">合格基準(全区分/100点)</div></div>
   </div>
-  <p class="caption" style="margin-top:10px">数値はIPA公式発表に基づく(出典は<a href="#sources">§7</a>)。2026年度の詳細日程・申込期間は「決まり次第お知らせ」とされているため、<a href="https://www.ipa.go.jp/shiken/kubun/nw.html">IPA公式サイト</a>を必ず定期確認すること。</p>
+  <p class="caption" style="margin-top:10px">2026年度の詳細日程・申込期間は未発表(2026年7月時点)。<a href="https://www.ipa.go.jp/shiken/kubun/nw.html">IPA公式</a>を毎月確認すること。制度の詳細は<a href="exam.html">§1 試験制度</a>へ。</p>
 </section>
 
-<!-- ================= §1 試験を知る ================= -->
-<section id="exam">
-  <div class="eyebrow"><span class="no">§1</span><h2>試験を知る — 制度とデータ</h2></div>
-
-  <p>敵を知らずに戦略は立てられない。まず試験の構造を正確に頭に入れる。ネットワークスペシャリスト(NW)は、IPAの情報処理技術者試験の中で最難関クラスの「高度試験(レベル4)」のひとつで、<em>4つの時間区分すべてで60点以上</em>を取って初めて合格になる。</p>
-
-  <h3><span class="h3tag">1-1</span>試験の構成 — 4つの関門</h3>
-  <div class="tablewrap"><table>
-    <thead><tr><th>区分</th><th>時間</th><th>形式</th><th>出題/解答</th><th>中身</th></tr></thead>
-    <tbody>
-      <tr><td><b>午前I</b></td><td class="num">50分</td><td>四肢択一</td><td class="num">30問/30問</td><td>テクノロジ・マネジメント・ストラテジ全般(応用情報レベル)</td></tr>
-      <tr><td><b>午前II</b></td><td class="num">40分</td><td>四肢択一</td><td class="num">25問/25問</td><td>ネットワークとセキュリティの専門知識</td></tr>
-      <tr><td><b>午後I</b></td><td class="num">90分</td><td>記述式</td><td class="num">3問中2問</td><td>中規模の事例問題。1問45分で読解+記述</td></tr>
-      <tr><td><b>午後II</b></td><td class="num">120分</td><td>記述式</td><td class="num">2問中1問</td><td>長文の設計事例。試験の本丸</td></tr>
-    </tbody>
-  </table></div>
-
-  <p>採点は<strong>多段階選抜方式</strong>。午前Iが60点未満なら午前II以降は採点すらされない。午前II落ちなら午後は無効、午後I落ちなら午後IIは無効。つまり<em>どれか1つでも手を抜くと、他の出来に関係なく不合格</em>になる。</p>
-
-  <div class="tip"><span class="tt">合格の視点</span>ただし全区分を均等に対策するのは間違い。午前I・午前IIは過去問の反復で「確実に通過する」水準まで持っていくだけでよく、合否を実際に分けるのは<strong>午後の記述式</strong>。学習時間の配分は後述の戦略(§2)で示す。</div>
-
-  <h3><span class="h3tag">1-2</span>午前I免除という強力な制度</h3>
-  <p>次のいずれかを満たすと、以後<strong>2年間</strong>、申請により午前Iが免除される。</p>
-  <ul>
-    <li>応用情報技術者試験(AP)に合格</li>
-    <li>いずれかの高度試験・情報処理安全確保支援士試験に合格</li>
-    <li>いずれかの高度試験・支援士試験の<strong>午前Iで基準点(60点)以上</strong>を取る</li>
-  </ul>
-  <p>3つ目が重要で、<em>仮に今回不合格でも、午前Iさえ通過しておけば次回から午前I免除で再挑戦できる</em>。1回目の受験が「無駄」になることはない。</p>
-
-  <h3><span class="h3tag">1-3</span>数字で見る難易度</h3>
-  <div class="tablewrap"><table>
-    <thead><tr><th>実施回</th><th class="num">応募者</th><th class="num">受験者</th><th class="num">合格者</th><th class="num">合格率</th><th class="num">合格者平均年齢</th></tr></thead>
-    <tbody>
-      <tr><td>2025年度春期(令和7)</td><td class="num">17,237</td><td class="num">11,948</td><td class="num">2,126</td><td class="num"><b>17.8%</b></td><td class="num">34.1歳</td></tr>
-      <tr><td>2024年度春期(令和6)</td><td class="num">16,085</td><td class="num">11,089</td><td class="num">1,704</td><td class="num">15.4%</td><td class="num">33.7歳</td></tr>
-      <tr><td>2023年度春期(令和5)</td><td class="num">15,239</td><td class="num">10,395</td><td class="num">1,482</td><td class="num">14.3%</td><td class="num">33.5歳</td></tr>
-    </tbody>
-  </table></div>
-  <p>合格率は14〜18%。低く見えるが、受験者の多くは実務経験者で、かつ十分に仕上げずに受けに来る層も厚い。<em>過去問ベースの正しい対策を4ヶ月やり切った受験者の実質的な勝率はこの数字よりずっと高い</em>——これがこの教材の基本認識。</p>
-
-  <h3><span class="h3tag">1-4</span>2026年度の重大変更 — CBT移行 <span class="badge-cbt">CBT</span></h3>
-  <div class="card">
-    <p style="margin-top:0">2026年度から、NWを含む高度試験は<strong>CBT方式(コンピュータ上で受験)</strong>へ移行する。IPAの発表では、従来の春期実施区分は「前期試験」として<strong>2026年11月頃</strong>に実施予定。ただし——</p>
-    <ul>
-      <li><strong>知識・技能の範囲、出題形式、出題数、試験時間に変更はない</strong>とIPAは明言している。過去問対策はそのまま有効。</li>
-      <li>詳細な試験実施期間・申込受付期間は未発表(「決まり次第お知らせ」)。<strong>申込を逃すと1年待ち</strong>になるため、IPAサイトの定期チェックを学習計画に組み込むこと(§3)。</li>
-      <li>記述式解答をキーボードで入力する形になるため、<em>手書きより書き直し・推敲がしやすくなる</em>。一方で図にメモを書き込む紙の作戦は使えない可能性があり、画面上での読解に慣れておきたい。</li>
-    </ul>
-  </div>
-</section>
-
-<!-- ================= §2 戦略 ================= -->
-<section id="strategy">
-  <div class="eyebrow"><span class="no">§2</span><h2>合格戦略 — 未経験者の戦い方</h2></div>
-
-  <p>ここからは戦略の話。事実(§1)を踏まえて、ネットワーク未経験者が4ヶ月で合格ラインに届くための考え方を示す。</p>
-
-  <h3><span class="h3tag">2-1</span>この試験の正体は「国語の試験」である</h3>
-  <p>NWは実は2つの異なる試験の合体でできている。</p>
-  <ul>
-    <li><strong>午前(I・II)</strong> = 知識のクイズ。過去問の再出題が多く、<em>反復演習で機械的に攻略できる</em>。</li>
-    <li><strong>午後(I・II)</strong> = 長文の事例読解。ある企業のネットワーク構成図・要件・トラブルが与えられ、「なぜこの設計なのか」「どこが問題か」「どう直すか」を<em>問題文中の根拠を使って</em>短文で記述する。</li>
-  </ul>
-  <p>午後で問われるのは、超マニアックな知識ではない。<em>基礎技術の正確な理解 × 問題文から根拠を拾う読解力</em>だ。解答の材料の大半は問題文と図表の中に埋まっている。だから未経験者でも、(1) 基礎を「動作を説明できるレベル」で固め、(2) 過去問読解の訓練を積めば、実務経験の不足はかなり補える。逆に、実務経験者が「知識で解こう」として問題文の条件を無視し、一般論を書いて落ちるのがこの試験の定番パターン。</p>
-
-  <h3><span class="h3tag">2-2</span>未経験者が陥る3つの失敗</h3>
+<section id="howto">
+  <div class="eyebrow"><span class="no">使い方</span><h2>この教材の進め方</h2></div>
   <ol>
-    <li><strong>参考書を「読み終えてから」過去問に入ろうとする。</strong>分厚い教科書の完読を目指すと、それだけで2ヶ月消える。知識は過去問で使って初めて定着する。<em>インプット5割の段階で過去問に突入</em>するのが正解。</li>
-    <li><strong>午前対策に時間をかけすぎる。</strong>午前は「通過」できれば100点も61点も同じ。合否を分ける午後に総学習時間の半分以上を投じる。</li>
-    <li><strong>午後の解答例を「読んで分かった気になる」。</strong>読むのと書くのは別の能力。制限時間内に自分の手で書き、IPA公式解答例・採点講評と突き合わせ、ズレの原因(知識不足/読み違い/根拠の見落とし)を分類する——この振り返りが実力そのもの。</li>
+    <li><strong><a href="exam.html">§1 試験制度</a>と<a href="strategy.html">§2 合格戦略</a>を最初に読む(30分)。</strong>敵の姿と4ヶ月の全体計画を頭に入れる。</li>
+    <li><strong>基礎講座を第1章から順に進める。</strong>各章は「本文→例題→章末テスト10問」の構成。テストで8割取れたら、ページ下部の「学習済みにする」を押して次へ。順番には意味がある(後の章は前の章の上に積む)。</li>
+    <li><strong>第8章まで来たら、並行して<a href="am2-drill.html">午前II模擬演習</a>と過去問道場を回し始める。</strong>全12章を終えたら<a href="pm-guide.html">午後メソッド</a>→<a href="pm-practice.html">午後演習</a>→IPA過去問へ。</li>
   </ol>
-
-  <h3><span class="h3tag">2-3</span>時間予算 — 4ヶ月で約320時間</h3>
-  <p>未経験からの現実的な必要量として、この教材は<strong>約300〜350時間</strong>を想定する(平日2時間+週末1日5時間×2 ≒ 週20時間×16週)。配分は次のとおり。</p>
-  <div class="tablewrap"><table>
-    <thead><tr><th>投資先</th><th class="num">配分</th><th>内容</th></tr></thead>
-    <tbody>
-      <tr><td>ネットワーク基礎の構築</td><td class="num">30%</td><td>本教材の基礎講座+入門書。「図を描いて他人に説明できる」水準まで</td></tr>
-      <tr><td>午前I・II 過去問反復</td><td class="num">15%</td><td>過去問道場をスキマ時間で回す。8割安定で切り上げ</td></tr>
-      <tr><td><b>午後I・II 過去問演習</b></td><td class="num"><b>45%</b></td><td>時間を計って書く→公式解答例・採点講評と照合→原因分類</td></tr>
-      <tr><td>総仕上げ・弱点補強</td><td class="num">10%</td><td>頻出テーマの穴埋め、直前の模擬通し</td></tr>
-    </tbody>
-  </table></div>
-
-  <div class="tip"><span class="tt">合格の視点</span>午前Iが免除でない(AP未合格の)場合も、専用の対策はほぼ不要。午前Iは応用情報の午前問題から流用されるので、<strong>過去問道場で応用情報の午前問題を通勤時間に回す</strong>だけでよい。60点=半分ちょっとで通過できる試験に机上の時間を割かない。</div>
-
-  <h3><span class="h3tag">2-4</span>「動かして理解する」を武器にする</h3>
-  <p>未経験者の最大の弱点は、プロトコルが「文字列」のままで動作イメージがないこと。これを埋める最速の方法は自分のPCで実際に見ることだ。すべて無料でできる。</p>
-  <ul>
-    <li><code>ipconfig /all</code>(Windows)で自宅のIPアドレス・サブネットマスク・デフォルトゲートウェイ・DNSサーバを確認し、第3章の知識と対応させる。</li>
-    <li><code>tracert www.ipa.go.jp</code>で、パケットがルータを何段も経由して届く様子を見る。</li>
-    <li><code>nslookup</code>でDNSの名前解決を手で叩く。第5章のDNSが一気に具体化する。</li>
-    <li><strong>Wireshark</strong>(無料のパケットキャプチャ)でWebアクセス時のDNS→TCP 3ウェイハンドシェイク→TLSハンドシェイクの流れを一度観察する。午後問題の「シーケンス図」が実物として見える。</li>
-  </ul>
+  <div class="tip"><span class="tt">しおり代わりに</span>各ページの「学習済み」ボタンはこの端末のブラウザに保存され、下のマップに✓が付く。スマホとPCで進捗は共有されない点だけ注意。</div>
 </section>
 
-<!-- ================= §3 ロードマップ ================= -->
-<section id="roadmap">
-  <div class="eyebrow"><span class="no">§3</span><h2>4ヶ月ロードマップ(2026年7月→11月)</h2></div>
-
-  <p>11月上旬受験と仮置きした16週間プラン。IPAから詳細日程が発表されたら幅を調整する。<strong>毎週日曜の夜に進捗を確認し、遅れたら翌週の「削る箇所」を決める</strong>(削るのは常に午前対策から。午後演習は削らない)。</p>
-
-  <div class="phase">
-    <div class="ph">Phase 1 — 基礎を作る</div>
-    <div class="pw">7月(第1〜4週)/目安80時間</div>
-    <p>本教材の<strong>基礎講座 第1〜5章</strong>を、ノートに図を描きながら読む。並行して入門書(『マスタリングTCP/IP 入門編』等、§6)を通読。各章末のキーワードを「一言で説明」できるかセルフチェック。§2-4のコマンド実験もここで。</p>
-    <div class="goalbox"><b>出口条件:</b>「ブラウザにURLを打ってからページが表示されるまでに起きること」を、DNS・TCP・HTTP・ルーティングの用語を使って5分間話せる。</div>
+<section id="map">
+  <div class="eyebrow"><span class="no">MAP</span><h2>学習マップ</h2></div>
+  <div class="progresswrap">
+    <span class="pl">学習進捗: </span><span class="pv" id="pv">0 / 18</span>
+    <div class="progressbar"><i id="pbar" style="width:0%"></i></div>
   </div>
 
-  <div class="phase">
-    <div class="ph">Phase 2 — 専門知識と午前の仕込み</div>
-    <div class="pw">8月(第5〜8週)/目安80時間</div>
-    <p><strong>基礎講座 第6〜8章</strong>(セキュリティ・冗長化・無線/IPv6/クラウド)へ。ここからは試験の頻出領域そのもの。同時に<strong>過去問道場で午前IIの反復を開始</strong>(1日20〜30問、スキマ時間)。午前I該当者は応用情報の午前問題も回し始める。月末に午後I過去問を1問だけ「偵察」として解いてみる——ボロボロでよい。敵の姿を知るのが目的。</p>
-    <div class="goalbox"><b>出口条件:</b>午前II過去問の正答率6割超え。午後Iの問題文が「何を聞かれているか」は分かる状態。</div>
+  <h3>試験と戦略</h3>
+  <div class="chapgrid">
+    <a class="chapcard" href="exam.html"><span class="cno">§1</span><span class="ct"><b>試験制度を知る</b><small>4区分・60点ルール・多段階選抜・CBT移行・統計・申込</small></span><span class="cdone">✓</span></a>
+    <a class="chapcard" href="strategy.html"><span class="cno">§2</span><span class="ct"><b>合格戦略と16週プラン</b><small>時間予算・週次計画・「午後は国語」の戦い方</small></span><span class="cdone">✓</span></a>
   </div>
 
-  <div class="phase">
-    <div class="ph">Phase 3 — 午後Iの壁を越える</div>
-    <div class="pw">9月〜10月中旬(第9〜14週)/目安110時間</div>
-    <p>主戦場。<strong>午後I過去問を週2〜3問、必ず45分計って手で(できればキーボードで)解く</strong>。直近5年分+αで計12〜15問。解いたら§4の振り返りプロトコルで原因分類。10月に入ったら<strong>午後IIを週1問</strong>(120分)追加。午前IIは8割安定したら維持モード(週2回)に落とす。</p>
-    <div class="goalbox"><b>出口条件:</b>午後I初見過去問で安定して55〜65点(自己採点)。午後IIを時間内に最後まで書き切れる。</div>
+  <h3>基礎講座 I — ネットワークの土台</h3>
+  <div class="chapgrid">
+    <a class="chapcard" href="ch01.html"><span class="cno">第1章</span><span class="ct"><b>ネットワークの全体像とレイヤモデル</b><small>OSI/TCP・カプセル化・機器と層・通信の一部始終</small></span><span class="cdone">✓</span></a>
+    <a class="chapcard" href="ch02.html"><span class="cno">第2章</span><span class="ct"><b>イーサネットとL2スイッチング</b><small>MAC学習・VLAN・802.1Q・STP・LACP</small></span><span class="cdone">✓</span></a>
+    <a class="chapcard" href="ch03.html"><span class="cno">第3章</span><span class="ct"><b>IPアドレッシングとサブネット設計</b><small>CIDR計算・NAT/NAPT・ARP・ICMP・DHCP</small></span><span class="cdone">✓</span></a>
+    <a class="chapcard" href="ch04.html"><span class="cno">第4章</span><span class="ct"><b>ルーティング</b><small>経路表の読み方・OSPF・BGP・経路制御</small></span><span class="cdone">✓</span></a>
+    <a class="chapcard" href="ch05.html"><span class="cno">第5章</span><span class="ct"><b>TCPとUDP</b><small>3WH・再送・ウィンドウ・スループット計算・MTU/MSS</small></span><span class="cdone">✓</span></a>
   </div>
 
-  <div class="phase">
-    <div class="ph">Phase 4 — 仕上げと実戦調整</div>
-    <div class="pw">10月中旬〜試験(第15〜16週+)/目安50時間</div>
-    <p>週末に<strong>午前II→午後I→午後IIの通し模擬</strong>を2回(過去問の未使用年度で)。間違いノートの総復習、頻出テーマ(§4-2)の最終確認。CBTを想定し、PC画面のPDFで問題を読みテキストで解答を書く練習をしておく。<strong>新しい教材には手を出さない。</strong></p>
-    <div class="goalbox"><b>出口条件:</b>通し模擬で全区分60点超え。あとは体調管理。</div>
+  <h3>基礎講座 II — サービスとセキュリティ</h3>
+  <div class="chapgrid">
+    <a class="chapcard" href="ch06.html"><span class="cno">第6章</span><span class="ct"><b>DNS</b><small>最頻出。名前解決・レコード・ゾーン・内外分離・移行手順</small></span><span class="cdone">✓</span></a>
+    <a class="chapcard" href="ch07.html"><span class="cno">第7章</span><span class="ct"><b>Web・プロキシ・メール</b><small>HTTP・Cookie・CDN・SMTP・SPF/DKIM/DMARC</small></span><span class="cdone">✓</span></a>
+    <a class="chapcard" href="ch08.html"><span class="cno">第8章</span><span class="ct"><b>ネットワークセキュリティ</b><small>最重要。FW/DMZ・TLS/証明書・VPN・802.1X・ゼロトラスト</small></span><span class="cdone">✓</span></a>
   </div>
 
-  <div class="tip"><span class="tt">最重要タスク</span>「IPAサイトで2026年度前期試験の申込受付期間を確認する」を<strong>毎月1日の繰り返し予定</strong>としてスマホのカレンダーに今すぐ登録すること。CBT移行初年度で運用が変わる可能性が高い。申込忘れはすべての努力を無にする。</div>
-</section>
-
-<!-- ================= 第1章 ================= -->
-<section id="ch1">
-  <div class="eyebrow"><span class="no">第1章</span><h2>ネットワークの全体像とレイヤモデル</h2></div>
-
-  <p>ネットワーク技術は膨大に見えるが、実はすべて<em>「役割ごとの層(レイヤ)に分けて、各層が下の層を利用する」</em>というたった1つの設計思想の上に載っている。この章の内容が以降すべての章の「地図」になる。</p>
-
-  <h3><span class="h3tag">1-1</span>レイヤモデル — 通信を層に分けて考える</h3>
-  <p>手紙に例えると:手紙の文面(アプリケーション)、封筒と宛名(トランスポート/ネットワーク)、配達トラック(データリンク/物理)。各層は自分の仕事だけをし、他の層の中身に関知しない。だから「Webの仕組みを変えずに、無線LANを有線に置き換える」ことができる。</p>
-  <div class="layers">
-    <div class="layer"><div class="ln">L7</div><div class="lb"><b>アプリケーション層</b><small>人間の用事を通信にする — HTTP, DNS, SMTP, DHCP, SNMP</small></div></div>
-    <div class="layer"><div class="ln">L4</div><div class="lb"><b>トランスポート層</b><small>アプリ同士の会話を管理(ポート番号・信頼性) — TCP, UDP</small></div></div>
-    <div class="layer"><div class="ln">L3</div><div class="lb"><b>ネットワーク層</b><small>世界中どこへでも届ける(IPアドレス・経路制御) — IP, ICMP/ルータ</small></div></div>
-    <div class="layer"><div class="ln">L2</div><div class="lb"><b>データリンク層</b><small>隣接機器間で運ぶ(MACアドレス) — イーサネット, 無線LAN/スイッチ</small></div></div>
-    <div class="layer"><div class="ln">L1</div><div class="lb"><b>物理層</b><small>電気・光・電波の信号 — UTPケーブル, 光ファイバ</small></div></div>
-  </div>
-  <p class="caption">TCP/IP実装で中心となる5層(OSI基本参照モデルではL5セション・L6プレゼンテーションを加えた7層)。「L2スイッチ」「L3スイッチ」「L4/L7ロードバランサ」という機器名は、この層番号=どの情報を見て動くかを表す。</p>
-
-  <h3><span class="h3tag">1-2</span>カプセル化 — データはこう包まれて運ばれる</h3>
-  <p>送信データは、各層のヘッダ(宛先などの管理情報)で順に包まれて(カプセル化)ケーブルに流れ、受信側で逆順に剥がされる。</p>
-<pre class="topo">アプリのデータ:                     [HTTPデータ]
-L4がTCPヘッダを付ける:        [TCP][HTTPデータ]  ← セグメント
-L3がIPヘッダを付ける:     [IP][TCP][HTTPデータ]  ← パケット
-L2がイーサネットヘッダ: [Eth][IP][TCP][HTTPデータ][FCS] ← フレーム</pre>
-  <p>重要な性質:<em>L2ヘッダ(MACアドレス)は1区間ごとに付け替えられるが、L3ヘッダ(IPアドレス)は原則、端から端まで変わらない</em>(NAT除く)。ルータを越えるたびに宛先MACは「次のルータ」に書き換わる——この理解が午後の構成図読解の土台になる。</p>
-
-  <h3><span class="h3tag">1-3</span>機器の役割対応表</h3>
-  <div class="tablewrap"><table>
-    <thead><tr><th>機器</th><th>見る情報</th><th>層</th><th>役割</th></tr></thead>
-    <tbody>
-      <tr><td>L2スイッチ</td><td>MACアドレス</td><td>L2</td><td>同一セグメント内でフレームを宛先ポートだけに転送</td></tr>
-      <tr><td>ルータ / L3スイッチ</td><td>IPアドレス</td><td>L3</td><td>セグメント(ネットワーク)間の経路を選んで転送</td></tr>
-      <tr><td>ファイアウォール</td><td>IP+ポート+状態</td><td>L3/L4</td><td>通信の許可/遮断(第6章)</td></tr>
-      <tr><td>ロードバランサ</td><td>ポート〜URL等</td><td>L4/L7</td><td>複数サーバへ振り分け(第7章)</td></tr>
-      <tr><td>プロキシ</td><td>HTTP等の中身</td><td>L7</td><td>通信の代理・検査(第5・6章)</td></tr>
-    </tbody>
-  </table></div>
-
-  <div class="exam"><span class="tt">試験ではこう出る</span>午後問題の構成図には L2SW・L3SW・FW・LB が必ず登場する。「この通信はどの機器で、どの層の情報を使って処理されるか」を追えることが読解の第一歩。午前IIでは各層の役割・機器・プロトコルの対応が定番。</div>
-  <div class="chips"><span>OSI基本参照モデル</span><span>TCP/IP</span><span>カプセル化</span><span>ヘッダ</span><span>フレーム/パケット/セグメント</span><span>L2SW</span><span>L3SW</span><span>MACアドレス</span><span>IPアドレス</span><span>ポート番号</span></div>
-</section>
-
-<!-- ================= 第2章 ================= -->
-<section id="ch2">
-  <div class="eyebrow"><span class="no">第2章</span><h2>イーサネットとスイッチング(L2)</h2></div>
-
-  <p>社内LANの土台がこの章。VLANは午後問題で「出ない年がない」レベルの超頻出領域。</p>
-
-  <h3><span class="h3tag">2-1</span>MACアドレスとフレーム転送</h3>
-  <p>すべてのLANポート(NIC)は48ビットの<strong>MACアドレス</strong>(例: <code>00-1A-2B-3C-4D-5E</code>)を持つ。イーサネットフレームは「宛先MAC/送信元MAC/タイプ/データ/FCS(誤り検出)」で構成される。</p>
-  <p>L2スイッチは、受信フレームの<em>送信元MACとポートの対応を「MACアドレステーブル」に学習</em>し、以後その宛先へのフレームを該当ポートだけに転送する。テーブルに無い宛先や<strong>ブロードキャスト</strong>(宛先 <code>FF-FF-…-FF</code>、全員宛て)は全ポートに流す(フラッディング)。</p>
-
-  <h3><span class="h3tag">2-2</span>ブロードキャストドメインとVLAN</h3>
-  <p>ブロードキャストが届く範囲を<strong>ブロードキャストドメイン</strong>と呼ぶ。端末が増えるとブロードキャストだけでLANが混み、セキュリティ上も「全員に聞こえる」のはまずい。そこで<strong>VLAN(Virtual LAN)</strong>で1台のスイッチを論理的に複数のLANに分割する。</p>
-  <ul>
-    <li><strong>ポートVLAN</strong>:ポート単位で所属VLANを固定(例: ポート1〜8は営業部VLAN10)。</li>
-    <li><strong>タグVLAN(IEEE 802.1Q)</strong>:フレームに4バイトの<em>VLANタグ(VLAN ID)</em>を挿入し、スイッチ間の1本のリンク(トランクポート)に複数VLANを相乗りさせる。</li>
-  </ul>
-  <p><em>VLANが異なれば、同じスイッチに挿さっていても直接通信できない</em>。VLAN間の通信は必ずL3(ルータ/L3スイッチ)を経由する——ここが第3章との接続点であり、午後問題の「なぜこの経路を通るのか」の根拠として頻繁に問われる。</p>
-
-  <h3><span class="h3tag">2-3</span>ループとスパニングツリー(STP)</h3>
-  <p>スイッチをリング状に接続するとブロードキャストが永久に回り続け(ブロードキャストストーム)、LANが停止する。<strong>STP(スパニングツリープロトコル)</strong>は、冗長リンクの一部を論理的にブロックしてループを防ぎ、障害時にはブロックを解除して経路を切り替える。ただし切替が遅いため、現代の設計では<strong>リンクアグリゲーション</strong>(複数ケーブルを1本の論理リンクに束ねる、IEEE 802.3ad/LACP)や<strong>スタック</strong>(複数スイッチを1台に見せる)でループ自体を作らない構成が主流(第7章)。</p>
-
-  <div class="exam"><span class="tt">試験ではこう出る</span>午後: 「VLANをどう割り当てるか」「トランクポートを通るVLANはどれか」「この構成でブロードキャストが届く範囲はどこまでか」。午前II: 802.1Qタグの仕組み、STPのポート状態、LACP。</div>
-  <div class="chips"><span>MACアドレステーブル</span><span>フラッディング</span><span>ブロードキャストドメイン</span><span>ポートVLAN</span><span>タグVLAN</span><span>IEEE 802.1Q</span><span>トランクポート</span><span>STP</span><span>ブロードキャストストーム</span><span>リンクアグリゲーション</span></div>
-</section>
-
-<!-- ================= 第3章 ================= -->
-<section id="ch3">
-  <div class="eyebrow"><span class="no">第3章</span><h2>IPとルーティング(L3)</h2></div>
-
-  <p>試験名が「ネットワーク」スペシャリストである以上、IPアドレス設計と経路制御はこの試験の心臓部。手を動かして計算に慣れること。</p>
-
-  <h3><span class="h3tag">3-1</span>IPv4アドレスとサブネット</h3>
-  <p>IPv4アドレスは32ビットで、<strong>ネットワーク部</strong>(どのセグメントか)と<strong>ホスト部</strong>(その中のどの機器か)に分かれる。境目を示すのが<strong>サブネットマスク</strong>で、<code>/24</code>のような<strong>CIDR表記</strong>は「先頭24ビットがネットワーク部」の意味。</p>
-  <div class="card">
-    <p style="margin-top:0"><b>例題:</b> <code>192.168.10.0/26</code> のネットワークで使えるホストアドレスは?</p>
-    <p>ホスト部は 32−26=6ビット → 2⁶=64個。ただし先頭(ネットワークアドレス <code>.0</code>)と末尾(ブロードキャストアドレス <code>.63</code>)は使えないので、ホストに割当可能なのは <code>192.168.10.1</code>〜<code>192.168.10.62</code> の<strong>62個</strong>。次のサブネットは <code>192.168.10.64/26</code>。</p>
-    <p style="margin-bottom:0">この「2のべき乗で区切る」計算は午前・午後の両方で問われる。/24, /25, /26, /27, /28, /30 の使用可能ホスト数(254, 126, 62, 30, 14, 2)は暗記してよい。</p>
-  </div>
-  <p>アドレスには<strong>プライベートアドレス</strong>(社内用: <code>10.0.0.0/8</code>, <code>172.16.0.0/12</code>, <code>192.168.0.0/16</code>)と<strong>グローバルアドレス</strong>(インターネットで一意)がある。社内からインターネットへ出るときは<strong>NAT/NAPT</strong>がプライベートアドレスをグローバルアドレスに変換する。NAPTは「IPアドレス+ポート番号」の組で変換するため、1個のグローバルアドレスを多数の端末で共有できる。</p>
-
-  <h3><span class="h3tag">3-2</span>同一セグメント内の通信 — ARP</h3>
-  <p>IPパケットを実際に運ぶのはL2フレームなので、宛先IPに対応する<strong>MACアドレス</strong>が必要。これを調べるのが<strong>ARP</strong>(「このIPの人、MAC教えて」というブロードキャスト)。宛先が<em>別セグメント</em>の場合、端末は宛先ではなく<strong>デフォルトゲートウェイ(ルータ)のMAC</strong>を解決してそこへ投げる。「同じセグメントなら直接、違うならルータへ」——この判断はサブネットマスクの計算で行われる。</p>
-
-  <h3><span class="h3tag">3-3</span>ルーティング — 経路はこう決まる</h3>
-  <p>ルータは<strong>ルーティングテーブル</strong>(宛先ネットワーク→次の転送先ネクストホップの表)を持ち、パケットごとに<em>最も具体的な(プレフィックスが長い)経路</em>を選ぶ(ロンゲストマッチ)。どこにも該当しなければ<strong>デフォルトルート</strong>(<code>0.0.0.0/0</code>)へ。テーブルの作り方は2通り。</p>
-  <ul>
-    <li><strong>スタティックルーティング</strong>:管理者が手で書く。単純・確実だが、経路や拠点が増えると破綻し、障害時に自動で切り替わらない。</li>
-    <li><strong>ダイナミックルーティング</strong>:ルータ同士が経路情報を交換して自動計算。
-      <ul>
-        <li><strong>OSPF</strong> — 社内(AS内部)用の代表。リンクステート型で、各ルータがネットワーク全体の地図(LSDB)を共有し最短経路を計算。エリア分割で大規模化に対応。</li>
-        <li><strong>BGP</strong> — 組織間(インターネット/AS間)用。経路をポリシーで制御でき、拠点とデータセンター/クラウドを結ぶWANの経路制御でも登場。</li>
-      </ul>
-    </li>
-  </ul>
-  <p>ICMPは疎通確認・エラー通知のプロトコルで、<code>ping</code>(エコー要求/応答)と<code>traceroute</code>(TTL切れを利用した経路調査)の動作原理は説明できるように。</p>
-
-  <div class="exam"><span class="tt">試験ではこう出る</span>午後の定番: 「この端末からこのサーバへの通信が通る経路を答えよ」「新拠点追加時にどのルータへどんな経路を追加すべきか」「障害時に経路がどう切り替わるか」。2025年度午後I問1も「ルータの更改」がテーマだった。アドレス設計(サブネット分割)は作図・穴埋めで頻出。</div>
-  <div class="chips"><span>CIDR</span><span>サブネットマスク</span><span>ネットワークアドレス</span><span>ブロードキャストアドレス</span><span>プライベートIP</span><span>NAT/NAPT</span><span>ARP</span><span>デフォルトゲートウェイ</span><span>ルーティングテーブル</span><span>ロンゲストマッチ</span><span>スタティック経路</span><span>OSPF</span><span>BGP</span><span>ICMP</span><span>TTL</span></div>
-</section>
-
-<!-- ================= 第4章 ================= -->
-<section id="ch4">
-  <div class="eyebrow"><span class="no">第4章</span><h2>TCPとUDP(L4)</h2></div>
-
-  <p>IPは「届くよう努力するが保証しない」プロトコル。信頼性を作るのがTCPの仕事で、その仕組み(再送・ウィンドウ・コネクション)は午後の性能問題・LB問題・トラブル解析の根拠として頻出する。</p>
-
-  <h3><span class="h3tag">4-1</span>ポート番号 — アプリの住所</h3>
-  <p>IPアドレスが「建物」なら、<strong>ポート番号</strong>は「部屋番号」。通信は「送信元IP・送信元ポート・宛先IP・宛先ポート・プロトコル」の組(5タプル)で一意に識別される。主要なウェルノウンポートは即答できるように:</p>
-  <div class="chips"><span>HTTP: 80</span><span>HTTPS: 443</span><span>DNS: 53</span><span>SMTP: 25</span><span>POP3: 110</span><span>IMAP4: 143</span><span>DHCP: 67/68</span><span>NTP: 123</span><span>SNMP: 161/162</span><span>SSH: 22</span><span>RADIUS: 1812/1813</span></div>
-
-  <h3><span class="h3tag">4-2</span>TCP — 信頼性はこう作られる</h3>
-  <p>TCPは通信開始時に<strong>3ウェイハンドシェイク</strong>でコネクションを確立する。</p>
-<pre class="topo">クライアント                    サーバ
-    │ ── SYN(接続したい) ──────→ │
-    │ ←─ SYN/ACK(OK,こちらも) ── │
-    │ ── ACK(了解) ────────────→ │
-    │ ═══ データ送受信 ═══════════ │  すべてのデータにシーケンス番号
-    │ ── FIN/ACK … (切断) ─────→ │  受信側はACKで到達を確認</pre>
-  <ul>
-    <li><strong>再送制御</strong>:ACKが返らないセグメントはタイムアウトで再送。パケットロスがあっても最終的に全データが揃う。</li>
-    <li><strong>ウィンドウ制御</strong>:ACKを待たずに連続送信できる量(ウィンドウサイズ)を受信側の空き具合に応じて調整(フロー制御)。<em>遅延が大きい回線ではウィンドウが埋まって速度が頭打ちになる</em>——午後の性能計算(スループット ≒ ウィンドウサイズ ÷ 往復遅延RTT)の根拠。</li>
-    <li><strong>輻輳制御</strong>:ネットワークの混雑を検知して送信量を自動で絞る。</li>
-  </ul>
-
-  <h3><span class="h3tag">4-3</span>UDP — 軽さで勝負</h3>
-  <p>UDPはコネクションも再送もない「投げっぱなし」。その分軽く低遅延で、<strong>DNS・NTP・SNMP・音声/映像(RTP)・DHCP</strong>など「小さい問い合わせ」「リアルタイム性優先」の用途で使われる。信頼性が必要ならアプリ側で面倒を見る(例: HTTP/3のQUICはUDP上に信頼性を実装)。</p>
-
-  <div class="exam"><span class="tt">試験ではこう出る</span>「FWはSYNだけ通したのに応答が返らない。なぜか」「RTTが増えるとファイル転送速度が落ちる理由を述べよ」「このアプリがUDPを使う理由」。ロードバランサのセッション維持(第7章)やFWのステートフルインスペクション(第6章)もTCPコネクションの理解が前提。</div>
-  <div class="chips"><span>ウェルノウンポート</span><span>3ウェイハンドシェイク</span><span>SYN/ACK/FIN</span><span>シーケンス番号</span><span>再送制御</span><span>ウィンドウ制御</span><span>フロー制御</span><span>輻輳制御</span><span>RTT</span><span>コネクションレス</span><span>QUIC</span></div>
-</section>
-
-<!-- ================= 第5章 ================= -->
-<section id="ch5">
-  <div class="eyebrow"><span class="no">第5章</span><h2>アプリケーション層プロトコル</h2></div>
-
-  <p>午後問題の題材は結局「Web・DNS・メールをどう安全に速く届けるか」に帰着することが多い。<strong>特にDNSは最頻出</strong>。仕組みを絵で描けるまで反復すること。</p>
-
-  <h3><span class="h3tag">5-1</span>DNS — 名前解決の仕組み(最重要)</h3>
-  <p>DNSは「<code>www.example.jp</code> → IPアドレス」の変換(名前解決)を行う分散データベース。登場人物は3種類。</p>
-  <ul>
-    <li><strong>スタブリゾルバ</strong>:PCやスマホの中の問い合わせ役。</li>
-    <li><strong>キャッシュDNSサーバ(フルリゾルバ)</strong>:端末に代わって世界中に問い合わせ、結果を<strong>TTL</strong>の期間キャッシュする。社内やISPに置かれる。</li>
-    <li><strong>権威DNSサーバ</strong>:自分のドメインの答え(ゾーン情報)を持つ。ルート → <code>jp</code> → <code>example.jp</code> と階層をたどって見つかる(反復問合せ)。</li>
-  </ul>
-  <p>主要レコード: <strong>A</strong>(名前→IPv4)/<strong>AAAA</strong>(→IPv6)/<strong>CNAME</strong>(別名)/<strong>MX</strong>(メール宛先)/<strong>NS</strong>(権威サーバ)/<strong>PTR</strong>(IP→名前の逆引き)/<strong>TXT</strong>(SPF等)。</p>
-  <div class="tip"><span class="tt">合格の視点</span>午後でDNSが強いのは、<em>設計(内部DNS/外部DNSの分離)、切替(TTLを短くしてからサーバ移行)、セキュリティ(キャッシュポイズニング・DNSSEC・オープンリゾルバ)、負荷分散(ラウンドロビン・CDN)</em>と、あらゆるテーマの結節点になるから。「TTLを事前に短縮する理由を述べよ」は殿堂入りの定番問題。</div>
-
-  <h3><span class="h3tag">5-2</span>HTTP/HTTPSとプロキシ・CDN</h3>
-  <p>HTTPはリクエスト(GET/POST等)とレスポンス(ステータスコード 200/301/403/404/500等)のやり取り。HTTPはステートレスなので、ログイン状態は<strong>Cookie</strong>(とセッションID)で維持する——ロードバランサのセッション維持(第7章)に直結する知識。現在の主流はTLSで暗号化した<strong>HTTPS</strong>(第6章)。</p>
-  <ul>
-    <li><strong>フォワードプロキシ</strong>:社内クライアントの代理でインターネットへアクセス。アクセス制御・ログ・URLフィルタの要。</li>
-    <li><strong>リバースプロキシ</strong>:サーバ側の入口に立ち、背後の複数サーバへ振り分け。TLS終端やキャッシュも担う。</li>
-    <li><strong>CDN</strong>:コンテンツを世界中のキャッシュサーバに配置し、ユーザを(主にDNSで)最寄りに誘導する配信網。2024年度午後Iの出題テーマ。</li>
-  </ul>
-
-  <h3><span class="h3tag">5-3</span>メール — SMTPと送信ドメイン認証</h3>
-  <p>送信はSMTP(サーバ間転送もSMTP)、受信はPOP3(端末にダウンロード)かIMAP4(サーバに置いたまま)。宛先ドメインのメールサーバは<strong>DNSのMXレコード</strong>で見つける。なりすまし対策の<strong>送信ドメイン認証</strong>は近年の頻出セット:</p>
-  <ul>
-    <li><strong>SPF</strong>:このドメインのメールを送ってよいIPアドレスをDNS(TXT)で公開。受信側が送信元IPと照合。</li>
-    <li><strong>DKIM</strong>:送信サーバがメールに電子署名。受信側がDNSで公開鍵を取得して検証。</li>
-    <li><strong>DMARC</strong>:SPF/DKIM失敗時の扱い(受け取る/隔離/拒否)をドメイン所有者が宣言。</li>
-  </ul>
-
-  <h3><span class="h3tag">5-4</span>DHCPとNTP</h3>
-  <p><strong>DHCP</strong>は端末にIPアドレス・サブネットマスク・デフォルトゲートウェイ・DNSサーバを自動配布する(DISCOVER→OFFER→REQUEST→ACK)。ブロードキャストを使うため、別セグメントのDHCPサーバを使うにはルータ/L3SWの<strong>DHCPリレーエージェント</strong>が必要——VLAN設計とセットで午後に出る。<strong>NTP</strong>は時刻同期。ログの時刻が揃っていないと障害解析ができないため、運用設計の文脈で登場する。</p>
-
-  <div class="exam"><span class="tt">試験ではこう出る</span>「サーバ移行時にDNSで何を事前に行うか(TTL短縮)」「社外からの名前解決と社内からの名前解決で応答を変える構成(内外DNS分離)」「SPFで検知できる/できない攻撃」「DHCPリレーが必要な理由」。</div>
-  <div class="chips"><span>キャッシュDNS</span><span>権威DNS</span><span>再帰/反復問合せ</span><span>TTL</span><span>A/AAAA/CNAME/MX/NS/PTR</span><span>Cookie</span><span>ステータスコード</span><span>フォワード/リバースプロキシ</span><span>CDN</span><span>SMTP</span><span>SPF/DKIM/DMARC</span><span>DHCPリレーエージェント</span><span>NTP</span></div>
-</section>
-
-<!-- ================= 第6章 ================= -->
-<section id="ch6">
-  <div class="eyebrow"><span class="no">第6章</span><h2>ネットワークセキュリティ</h2></div>
-
-  <p>近年の午後試験は<em>ほぼ全問にセキュリティ要素が混ざる</em>。2025年度午後IではSWG(セキュアWebゲートウェイ)導入がそのままテーマになった。この章は配点源として最優先で仕上げる。</p>
-
-  <h3><span class="h3tag">6-1</span>ファイアウォールとDMZ — 境界防御の基本形</h3>
-  <p><strong>ファイアウォール(FW)</strong>は「送信元/宛先IP・ポート」のルールで通信を許可/遮断する。現代のFWは<strong>ステートフルインスペクション</strong>:内側から出たTCPコネクションを記憶し、<em>その戻りパケットだけ</em>を自動許可する(だから戻り用のルールを書かなくてよい)。</p>
-  <p>外部に公開するサーバは、社内LANでもインターネットでもない中間区画<strong>DMZ</strong>に置く。公開サーバが乗っ取られても社内へ直接入られないようにするためだ。</p>
-<pre class="topo">インターネット
-      │
-   [ルータ]
-      │
-    [FW]────────── DMZ ──[公開Web][外部DNS][メール中継]
-      │
-   社内LAN ──[L3SW]──[各部署VLAN][社内サーバ][内部DNS]
-
-  原則: インターネット→DMZ(特定ポートのみ許可)
-        DMZ→社内LAN(原則禁止)
-        社内LAN→インターネット(プロキシ経由のみ許可)</pre>
-  <p class="caption">午後問題の構成図の原型。この図に無線LANコントローラ、LB、VPN装置、クラウド接続が足されていくのが実際の出題。</p>
-
-  <h3><span class="h3tag">6-2</span>暗号とTLS — HTTPSの中身</h3>
-  <p>暗号の基本部品は3つ。<strong>共通鍵暗号</strong>(同じ鍵で暗号化/復号。高速。AES)、<strong>公開鍵暗号</strong>(公開鍵で暗号化→秘密鍵で復号。鍵配送問題を解決。RSA/楕円曲線)、<strong>ハッシュ</strong>(改ざん検知。SHA-256)。</p>
-  <p><strong>TLS</strong>はこれらを組み合わせる:ハンドシェイクで (1) サーバが<strong>サーバ証明書</strong>を提示、(2) クライアントは証明書の署名を<strong>認証局(CA)</strong>の公開鍵で検証してサーバの正当性を確認、(3) 公開鍵暗号(鍵交換)で<strong>共通鍵(セッション鍵)</strong>を安全に共有、(4) 以降の通信は高速な共通鍵暗号で保護。<em>「認証は公開鍵暗号と証明書、データ暗号化は共通鍵」という役割分担</em>を記述できることが重要。</p>
-  <p>関連頻出語: 1枚の証明書で複数サイトに対応する<strong>SNI/SAN</strong>、LBやプロキシで暗号化を解く<strong>TLS終端(TLSオフロード)</strong>、社内プロキシがHTTPSの中身を検査する<strong>TLSインスペクション</strong>(端末に社内CA証明書の配布が必要)。</p>
-
-  <h3><span class="h3tag">6-3</span>VPN — 拠点と人を安全につなぐ</h3>
-  <ul>
-    <li><strong>IPsec VPN(拠点間)</strong>:拠点ルータ同士がインターネット上に暗号トンネルを張る。IKEで鍵交換・ESPで暗号化。本社〜支社の内線的な接続。</li>
-    <li><strong>SSL-VPN / リモートアクセスVPN</strong>:個人端末から社内へ。近年はVPN装置の脆弱性が攻撃対象になっており、<strong>ゼロトラスト</strong>(後述)への移行文脈で午後に登場する。</li>
-    <li><strong>広域イーサネット・IP-VPN(閉域網)</strong>:通信事業者の閉じた網で拠点を接続。インターネットVPNより高品質・高価。クラウド接続(第8章)でも「閉域接続」として頻出。</li>
-  </ul>
-
-  <h3><span class="h3tag">6-4</span>認証 — 802.1XとRADIUS</h3>
-  <p>「そのLANポート/無線APに接続してよい端末・人か」を検証するのが<strong>IEEE 802.1X</strong>。端末(サプリカント)—スイッチ/AP(オーセンティケータ)—<strong>RADIUSサーバ</strong>(認証サーバ)の三者構成で、EAP(証明書を使うEAP-TLS等)により認証する。無線LANのエンタープライズ認証(第8章)と一体で出題される。</p>
-
-  <h3><span class="h3tag">6-5</span>検知と防御の機器たち</h3>
-  <div class="tablewrap"><table>
-    <thead><tr><th>機器/概念</th><th>層・場所</th><th>役割</th></tr></thead>
-    <tbody>
-      <tr><td>IDS / IPS</td><td>ネットワーク境界</td><td>攻撃パターンを検知(IDS)・遮断(IPS)</td></tr>
-      <tr><td>WAF</td><td>Webサーバ前段(L7)</td><td>SQLインジェクション等、Webアプリへの攻撃を防ぐ</td></tr>
-      <tr><td>UTM</td><td>境界</td><td>FW+IPS+アンチウイルス等の統合装置</td></tr>
-      <tr><td>SWG</td><td>クラウド</td><td>社外からの通信も含めWebアクセスを一括検査(プロキシのクラウド版)。2025年度午後I出題</td></tr>
-      <tr><td>ゼロトラスト/ZTNA</td><td>アーキテクチャ</td><td>「社内=安全」をやめ、全アクセスを都度認証・認可する設計思想</td></tr>
-      <tr><td>SIEM</td><td>運用</td><td>各機器のログを集約・相関分析</td></tr>
-    </tbody>
-  </table></div>
-  <p>攻撃の代表例も動作原理まで理解する: <strong>DoS/DDoS</strong>(帯域・リソースの枯渇)、<strong>DNSキャッシュポイズニング</strong>(偽の名前解決を注入→対策DNSSEC)、<strong>ARPスプーフィング</strong>、<strong>中間者攻撃</strong>、<strong>フィッシング/標的型メール</strong>(対策は5-3の送信ドメイン認証)。</p>
-
-  <div class="exam"><span class="tt">試験ではこう出る</span>「このFWルール表に追加すべき行を答えよ」「公開サーバをDMZに置く理由」「TLS終端をLBで行う利点」「802.1X導入時に必要な構成要素」。FWルール表の穴埋めは手を動かして練習しないと本番で書けない。</div>
-  <div class="chips"><span>ステートフルインスペクション</span><span>DMZ</span><span>共通鍵/公開鍵暗号</span><span>ハッシュ</span><span>サーバ証明書</span><span>CA</span><span>TLSハンドシェイク</span><span>TLS終端</span><span>IPsec/IKE/ESP</span><span>SSL-VPN</span><span>閉域網</span><span>IEEE 802.1X</span><span>RADIUS</span><span>EAP-TLS</span><span>IDS/IPS</span><span>WAF</span><span>SWG</span><span>ゼロトラスト</span><span>DNSSEC</span><span>DDoS</span></div>
-</section>
-
-<!-- ================= 第7章 ================= -->
-<section id="ch7">
-  <div class="eyebrow"><span class="no">第7章</span><h2>冗長化・可用性・運用管理</h2></div>
-
-  <p>「止まらないネットワークをどう作るか」。午後IIの大型設計問題はほぼ確実にこの章の技術を含む。考え方は1つ——<em>単一障害点(SPOF)を潰す</em>。機器・リンク・経路・サイトの各レベルで冗長化の道具を持つ。</p>
-
-  <h3><span class="h3tag">7-1</span>デフォルトゲートウェイの冗長化 — VRRP</h3>
-  <p>端末のデフォルトゲートウェイが1台だと、そのルータの故障で全端末が外に出られなくなる。<strong>VRRP</strong>は複数ルータで<strong>仮想IPアドレス(VIP)と仮想MAC</strong>を共有し、マスタ故障時にバックアップが自動昇格する。端末側は設定変更不要。<em>「切替時に端末の設定変更が不要な理由(=仮想MACごと引き継ぐから)」</em>は定番の記述問題。</p>
-
-  <h3><span class="h3tag">7-2</span>サーバの冗長化 — ロードバランサ(LB)</h3>
-  <p><strong>LB</strong>は仮想IP宛ての通信を複数サーバへ振り分ける。押さえる観点は3つ。</p>
-  <ul>
-    <li><strong>振り分け方式</strong>:ラウンドロビン、最小コネクション数、応答時間ベース等。</li>
-    <li><strong>ヘルスチェック(死活監視)</strong>:L3(ping)/L4(TCP接続)/L7(HTTPで特定URLの応答確認)。故障サーバを自動で振り分け対象から外す。<em>「L7ヘルスチェックでないと検知できない障害は何か(=プロセスは生きているがアプリが異常)」</em>が頻出。</li>
-    <li><strong>セッション維持(パーシステンス)</strong>:ログイン中のユーザを同じサーバに送り続ける仕組み(送信元IP固定、Cookieベース等)。第5章のCookie理解が前提。</li>
-  </ul>
-
-  <h3><span class="h3tag">7-3</span>リンクと機器の冗長化</h3>
-  <ul>
-    <li><strong>リンクアグリゲーション(LACP)</strong>:複数ケーブルを1論理リンクに。帯域増+1本切れても継続。</li>
-    <li><strong>スタック/シャーシ冗長</strong>:複数スイッチを論理1台に。ループフリーでSTPに頼らない現代の主流構成。</li>
-    <li><strong>WAN・サイト冗長</strong>:回線2本(主系/副系)、BGPやフローティングスタティックで経路切替。データセンター自体の冗長はマルチサイト・マルチクラウド(2023年度午後IIテーマ)へ。</li>
-  </ul>
-
-  <h3><span class="h3tag">7-4</span>運用管理 — 監視・ログ・QoS</h3>
-  <ul>
-    <li><strong>SNMP</strong>:機器の状態(MIB)をマネージャが取得(ポーリング)、機器側からの異常通知は<strong>Trap</strong>。</li>
-    <li><strong>syslog</strong>:ログの集約。NTPによる時刻同期(第5章)とセットで意味を持つ。</li>
-    <li><strong>NetFlow/sFlow</strong>:トラフィックの内訳を可視化。</li>
-    <li><strong>QoS</strong>:音声など遅延に弱い通信を優先制御(優先度付け・帯域制御・キューイング)。帯域計算(必要帯域=同時通話数×1通話あたり帯域、など)は午後の計算問題として登場。</li>
-  </ul>
-
-  <div class="exam"><span class="tt">試験ではこう出る</span>「この構成の単一障害点を指摘せよ」「VRRP切替後の通信経路を図示せよ」「セッション維持方式としてCookie方式を選ぶ理由」「監視サーバがこの障害を検知できなかった理由」。<em>障害シナリオを与えて切り分けさせる問題</em>は午後Iの華。</div>
-  <div class="chips"><span>単一障害点(SPOF)</span><span>VRRP</span><span>仮想IP(VIP)</span><span>ロードバランサ</span><span>ヘルスチェック</span><span>セッション維持</span><span>LACP</span><span>スタック</span><span>フローティングスタティック</span><span>SNMP/MIB/Trap</span><span>syslog</span><span>NetFlow</span><span>QoS</span><span>優先制御</span></div>
-</section>
-
-<!-- ================= 第8章 ================= -->
-<section id="ch8">
-  <div class="eyebrow"><span class="no">第8章</span><h2>無線LAN・IPv6・クラウド時代の技術</h2></div>
-
-  <p>近年の出題傾向(2023〜2025年度)を映す章。<strong>IPv6対応・IoT・データセンター(VXLAN)・マルチクラウド</strong>はここ3年の午後IIテーマそのものだ。基礎講座の総仕上げとして、第1〜7章の知識がどう組み合わさるかを見る。</p>
-
-  <h3><span class="h3tag">8-1</span>無線LAN(IEEE 802.11)</h3>
-  <ul>
-    <li><strong>規格と周波数</strong>:2.4GHz帯(遠くまで届くが干渉多い)と5GHz/6GHz帯(高速・干渉少ないが減衰しやすい)。Wi-Fi 6(802.11ax)が現行主流。</li>
-    <li><strong>チャネル設計</strong>:隣接APは重複しないチャネルを割り当てて<strong>電波干渉</strong>を避ける。2.4GHz帯で同時利用できるのは実質3チャネル(1/6/11)——オフィスのAP配置問題として出る。</li>
-    <li><strong>ローミング</strong>:端末がAP間を移動しても通信を継続する仕組み。多数のAPを<strong>無線LANコントローラ</strong>で集中管理する構成が定番。</li>
-    <li><strong>セキュリティ</strong>:暗号化は<strong>WPA2/WPA3</strong>。企業では事前共有鍵(PSK)ではなく<strong>802.1X+RADIUS認証(エンタープライズ)</strong>(第6章)。来訪者用ゲストSSIDは社内VLANと分離する。</li>
-  </ul>
-
-  <h3><span class="h3tag">8-2</span>IPv6 — 2025年度午後IIの主役</h3>
-  <p>IPv4アドレス枯渇への根本解。128ビットで、表記は <code>2001:db8::1</code> のように16進数・省略記法(連続する0は<code>::</code>で一度だけ圧縮)。</p>
-  <ul>
-    <li><strong>アドレスの種類</strong>:グローバルユニキャスト、リンクローカル(<code>fe80::/10</code>、同一リンク内専用で必ず自動生成)、ユニークローカル。<em>ブロードキャストは廃止され、マルチキャストで代替</em>。ARPも廃止され<strong>NDP(近隣探索)</strong>が担う。</li>
-    <li><strong>アドレス自動設定</strong>:ルータが<strong>RA(ルータ広告)</strong>でプレフィックスを配り、端末が自分でアドレスを生成する<strong>SLAAC</strong>。DNSサーバ等の配布にはDHCPv6を併用。</li>
-    <li><strong>IPv4との共存</strong>:両方を同時に持つ<strong>デュアルスタック</strong>が基本。他にトンネリング、変換(NAT64/DNS64)。「社内ネットワークのIPv6対応」(2025年度午後II問1)は、まさに既存IPv4網にこれらをどう導入するかを問うた。</li>
-  </ul>
-
-  <h3><span class="h3tag">8-3</span>クラウド接続とマルチクラウド</h3>
-  <p>社内システムがIaaS/SaaSへ移ると、ネットワークの主戦場は「社内LAN設計」から「クラウドへの接続設計」に変わる。</p>
-  <ul>
-    <li><strong>接続方式</strong>:インターネットVPN経由(安価)か、<strong>閉域接続</strong>(専用線・キャリア閉域網。帯域と品質を保証)か。要件(機密性・遅延・コスト)から選ばせる問題が出る。</li>
-    <li><strong>SaaSトラフィック問題</strong>:全拠点の通信を本社FW経由にすると回線が逼迫する→拠点から直接出す<strong>ローカルブレイクアウト</strong>、クラウド側で検査する<strong>SWG</strong>(第6章)へ。</li>
-    <li><strong>マルチクラウド</strong>(2023年度午後II):複数クラウドの併用で可用性を上げる。DNSによる切替、閉域網のハブ設計が論点。</li>
-  </ul>
-
-  <h3><span class="h3tag">8-4</span>データセンターとネットワーク仮想化</h3>
-  <ul>
-    <li><strong>VXLAN</strong>:L2フレームをUDP/IPで包んで(トンネル)、L3ネットワークの上に仮想的なL2ネットワークを作る<strong>オーバーレイ</strong>技術。カプセル化の出入口が<strong>VTEP</strong>。VLAN IDの4094個制限を超える約1677万のセグメントを作れる。</li>
-    <li><strong>EVPN</strong>:VXLANの「どのMACがどのVTEPの先にいるか」を<strong>BGP</strong>で広告する制御プレーン。2024年度午後IIはこのVXLAN/EVPNによるDC設計が出た。</li>
-    <li><strong>SDN/NFV</strong>:ネットワーク制御のソフトウェア化(制御と転送の分離)、ルータ・FW等の機能を汎用サーバ上の仮想機能として動かすNFV。午前IIの用語問題として頻出。</li>
-    <li><strong>IoT/M2M</strong>(2025年度午後II):大量の小型デバイスを収容する設計。省電力広域網(LPWA)、MQTT等の軽量プロトコル、デバイス認証がキーワード。</li>
-  </ul>
-
-  <div class="exam"><span class="tt">試験ではこう出る</span>この章のテーマは午後IIの「本丸」。ただし問われ方は常に基礎との合わせ技——IPv6問題の中でDNS(AAAA)とDHCPが、VXLAN問題の中でBGPとMAC学習が、クラウド問題の中でプロキシとFWルールが問われる。<em>第1〜7章の基礎が固まっていれば、初見のテーマでも本文の誘導に乗って解ける</em>。</div>
-  <div class="chips"><span>Wi-Fi 6</span><span>チャネル設計</span><span>ローミング</span><span>無線LANコントローラ</span><span>WPA3</span><span>SLAAC</span><span>RA</span><span>NDP</span><span>リンクローカル</span><span>デュアルスタック</span><span>NAT64</span><span>閉域接続</span><span>ローカルブレイクアウト</span><span>マルチクラウド</span><span>VXLAN</span><span>VTEP</span><span>EVPN</span><span>オーバーレイ</span><span>SDN/NFV</span><span>LPWA</span><span>MQTT</span></div>
-</section>
-
-<!-- ================= §4 午後攻略 ================= -->
-<section id="pm">
-  <div class="eyebrow"><span class="no">§4</span><h2>午後試験 完全攻略</h2></div>
-
-  <p>合否はここで決まる。午後は「知識の試験」ではなく「<em>問題文に埋まった根拠を、設問が求める型で書き出す試験</em>」——この認識を技術として身につける。</p>
-
-  <h3><span class="h3tag">4-1</span>鉄則: 本文根拠主義</h3>
-  <p>IPAの解答例・採点講評を読むと一貫した思想が見える。求められるのは一般論ではなく、<strong>「この会社の、この構成の、この要件では」どうか</strong>だ。</p>
-  <ul>
-    <li>解答の材料は、本文の記述・<strong>構成図・IPアドレス表・FWルール表・注記</strong>の中にほぼ必ずある。</li>
-    <li>「なぜか」と問われたら、本文中の条件を引用して「〜という要件があるため」「〜の構成では〜となるから」の形で書く。</li>
-    <li>知識だけで書ける解答は疑え。<em>本文を使っていない解答は、たいてい出題者の意図から外れている</em>。</li>
-  </ul>
-
-  <h3><span class="h3tag">4-2</span>読解の手順(午後I: 45分/問)</h3>
-  <ol>
-    <li><strong>[3分] 設問を先に読む。</strong>何を探しながら読むべきかが決まる。</li>
-    <li><strong>[5分] 図と表を先に押さえる。</strong>構成図に「どこからどこへ、何の通信が流れるか」を書き込む(CBTでは頭の中で/メモ機能で)。</li>
-    <li><strong>[15分] 本文を段落ごとに読む。</strong>「現状」「課題」「新要件」「変更案」の切れ目に印。<em>下線部・空欄の前後に解答根拠が集中する</em>。</li>
-    <li><strong>[20分] 解答を書く。</strong>字数指定の8割以上を埋める。主語と目的語を省かない(「速くなるから」ではなく「〜が〜を経由しなくなり、遅延が減るから」)。</li>
-    <li><strong>[2分] 見直し。</strong>設問の型(理由/内容/名称/箇所)と解答の型が一致しているか確認。</li>
-  </ol>
-  <p>午後II(120分/問)も手順は同じで、本文が長くなるだけ。<strong>問題選択</strong>は最初の5分で決める:図表を眺めて<em>自分の得意分野(この教材の何章か)に近い方</em>を選ぶ。迷ったら「設問が具体的で本文根拠を拾いやすそうな方」。</p>
-
-  <h3><span class="h3tag">4-3</span>設問の型と解答の型</h3>
-  <div class="tablewrap"><table>
-    <thead><tr><th>設問の型</th><th>解答の作り方</th></tr></thead>
-    <tbody>
-      <tr><td>「〜の理由を述べよ」</td><td>本文の条件+技術的因果で「〜ため」で結ぶ。理由を2つ聞かれたら観点を変える(性能とセキュリティ等)</td></tr>
-      <tr><td>「〜の問題点を述べよ」</td><td>現構成のままだと何が起きるかを具体的に(「〜が単一障害点となり、故障時に〜が停止する」)</td></tr>
-      <tr><td>「〜の設定内容を答えよ」</td><td>機器名・対象・値まで特定(「L3SWのVLAN20のインタフェースにDHCPリレーを設定」)</td></tr>
-      <tr><td>「本文中の字句で答えよ」</td><td>必ず本文の表現をそのまま使う。言い換え禁止</td></tr>
-      <tr><td>「図中の機器名で答えよ」</td><td>図のラベル表記(FW1, L2SW3等)を正確に写す</td></tr>
-      <tr><td>計算問題</td><td>単位変換(bit/Byte、k/M/G)を落ち着いて。式を書いてから計算</td></tr>
-    </tbody>
-  </table></div>
-
-  <h3><span class="h3tag">4-4</span>過去問の振り返りプロトコル</h3>
-  <p>1問解くごとに、IPA公式の<strong>解答例</strong>と<strong>採点講評</strong>(受験者の誤答傾向まで書いてある一級資料。無料)で採点し、間違いを3分類してノートに記録する。</p>
-  <ol>
-    <li><strong>知識不足</strong> → 本教材の該当章に戻る。チェックリストの穴を潰す。</li>
-    <li><strong>読み違い・見落とし</strong> → どの図表/段落に根拠があったかを確認し、「次はどこを見るか」を言語化。</li>
-    <li><strong>書き方の問題</strong>(分かっていたのに減点) → 解答例の文型を書き写して型を盗む。</li>
-  </ol>
-  <p>この分類を10問も続けると、自分の失点パターンが2〜3個に収束する。それが残り期間の補強ポイントになる。</p>
-
-  <h3><span class="h3tag">4-5</span>頻出テーマ×近年の実際の出題</h3>
-  <div class="tablewrap"><table>
-    <thead><tr><th>年度</th><th>午後I</th><th>午後II</th></tr></thead>
-    <tbody>
-      <tr><td>2025(R7)</td><td>ルータの更改/ネットワークの改善/SWG導入</td><td>社内ネットワークのIPv6対応/IoTシステムの設計</td></tr>
-      <tr><td>2024(R6)</td><td>コンテンツ配信ネットワーク(CDN) ほか</td><td>データセンターNWの検討(VXLAN/EVPN) ほか</td></tr>
-      <tr><td>2023(R5)</td><td>Webシステムの更改(DMZ/DNS/FW) ほか</td><td>マルチクラウド利用による可用性向上 ほか</td></tr>
-    </tbody>
-  </table></div>
-  <p>分野別の出題されやすさ(調査に基づく優先度):<strong>セキュリティ</strong>と<strong>Web/DNS/TLS</strong>は毎年何らかの形で登場。<strong>冗長化・LB</strong>、<strong>L2/L3設計</strong>が続き、近年は<strong>クラウド接続・IPv6・DC仮想化・無線LAN・IoT</strong>が周期的に主役を務める。<em>「セキュリティ+もう1分野」の複合</em>が現代の標準形。</p>
-</section>
-
-<!-- ================= §5 ミニ演習 ================= -->
-<section id="quiz">
-  <div class="eyebrow"><span class="no">§5</span><h2>ミニ演習 — 午前II風・理解度チェック</h2></div>
-  <p>基礎講座の理解を確認する書き下ろし10問(本試験の過去問は<a href="#resources">過去問道場</a>で)。タップで解答と解説が開く。</p>
-
-  <details class="qa"><summary>Q1. L2スイッチがフレームを特定ポートだけに転送できるのは、何を学習しているからか。</summary>
-    <ul class="qopts"><li><b>ア</b> 宛先IPアドレスとポートの対応</li><li><b>イ</b> 送信元MACアドレスとポートの対応</li><li><b>ウ</b> VLAN IDとIPアドレスの対応</li><li><b>エ</b> ARPテーブル</li></ul>
-    <div class="ans"><p><span class="a">正解: イ</span> — スイッチは受信フレームの<b>送信元</b>MACアドレスを見て「このMACはこのポートの先にいる」と学習する(第2章)。ARPテーブルはIP⇄MACの対応で、端末やルータが持つもの。</p></div>
-  </details>
-
-  <details class="qa"><summary>Q2. 192.168.1.0/27 のサブネットでホストに割り当て可能なアドレス数はいくつか。</summary>
-    <ul class="qopts"><li><b>ア</b> 14</li><li><b>イ</b> 30</li><li><b>ウ</b> 32</li><li><b>エ</b> 62</li></ul>
-    <div class="ans"><p><span class="a">正解: イ</span> — ホスト部は32−27=5ビットで2⁵=32。ネットワークアドレスとブロードキャストアドレスを除いて<b>30個</b>(第3章)。</p></div>
-  </details>
-
-  <details class="qa"><summary>Q3. 端末が「宛先は別セグメント」と判断したとき、ARPで解決するMACアドレスはどれか。</summary>
-    <ul class="qopts"><li><b>ア</b> 宛先サーバのMAC</li><li><b>イ</b> DNSサーバのMAC</li><li><b>ウ</b> デフォルトゲートウェイのMAC</li><li><b>エ</b> ブロードキャストMAC</li></ul>
-    <div class="ans"><p><span class="a">正解: ウ</span> — 別セグメント宛てのパケットはまずルータ(デフォルトゲートウェイ)へ送るため、そのMACを解決する(第3章)。宛先IPは変わらないがL2の宛先は区間ごとに変わる、という第1章の原則の応用。</p></div>
-  </details>
-
-  <details class="qa"><summary>Q4. RTT(往復遅延)が大きい回線でTCPのファイル転送速度が上がらない主因はどれか。</summary>
-    <ul class="qopts"><li><b>ア</b> ヘッダのオーバーヘッド増加</li><li><b>イ</b> ウィンドウ分送るとACK待ちが発生するため</li><li><b>ウ</b> 再送タイマの初期値が大きいため</li><li><b>エ</b> MTUが小さくなるため</li></ul>
-    <div class="ans"><p><span class="a">正解: イ</span> — スループットは概ね「ウィンドウサイズ÷RTT」で頭打ちになる。ウィンドウ分を送り切るとACKが返るまで待つしかない(第4章)。午後の性能問題の定番根拠。</p></div>
-  </details>
-
-  <details class="qa"><summary>Q5. サーバ移行の前にDNSレコードのTTLを短くしておく目的はどれか。</summary>
-    <ul class="qopts"><li><b>ア</b> 権威サーバの負荷を下げる</li><li><b>イ</b> キャッシュの参照回数を増やして高速化する</li><li><b>ウ</b> 切替後、旧IPのキャッシュが早く消えて新IPへの切替が速く浸透する</li><li><b>エ</b> ゾーン転送を高速化する</li></ul>
-    <div class="ans"><p><span class="a">正解: ウ</span> — キャッシュDNSはTTLの間、古い応答を返し続ける。事前にTTLを短くしておけば切替が全利用者に速く行き渡る(第5章)。殿堂入りの頻出論点。</p></div>
-  </details>
-
-  <details class="qa"><summary>Q6. ステートフルインスペクション型FWで「内→外」の許可ルールだけで通信が成立する理由はどれか。</summary>
-    <ul class="qopts"><li><b>ア</b> 戻りパケットは常に無条件で許可されるから</li><li><b>イ</b> コネクション情報を記憶し、その戻りと一致するパケットを動的に許可するから</li><li><b>ウ</b> NAPTがポートを変換するから</li><li><b>エ</b> TCPフラグを見ていないから</li></ul>
-    <div class="ans"><p><span class="a">正解: イ</span> — FWはセッションテーブルで通信の状態を管理し、確立済みコネクションの応答だけを通す(第6章)。「常に無条件」ではない点がアとの違い。</p></div>
-  </details>
-
-  <details class="qa"><summary>Q7. TLSで、データ本体の暗号化に共通鍵暗号を使う主な理由はどれか。</summary>
-    <ul class="qopts"><li><b>ア</b> 公開鍵暗号より処理が高速だから</li><li><b>イ</b> 鍵の配送が不要だから</li><li><b>ウ</b> 改ざん検知ができるから</li><li><b>エ</b> 証明書が不要だから</li></ul>
-    <div class="ans"><p><span class="a">正解: ア</span> — 公開鍵暗号は計算コストが高い。鍵交換・認証だけ公開鍵暗号で行い、大量データは高速な共通鍵暗号で守る役割分担(第6章)。</p></div>
-  </details>
-
-  <details class="qa"><summary>Q8. VRRPでマスタルータが故障しても端末側の設定変更が不要な理由はどれか。</summary>
-    <ul class="qopts"><li><b>ア</b> 端末がRAで新しいゲートウェイを学習するから</li><li><b>イ</b> バックアップが仮想IPと仮想MACをそのまま引き継ぐから</li><li><b>ウ</b> DHCPが新しいゲートウェイを再配布するから</li><li><b>エ</b> 端末のARPテーブルが即時消えるから</li></ul>
-    <div class="ans"><p><span class="a">正解: イ</span> — 端末から見えるゲートウェイのIPもMACも仮想アドレスのままなので、切替を意識する必要がない(第7章)。記述式でもそのまま問われる論点。</p></div>
-  </details>
-
-  <details class="qa"><summary>Q9. L7ヘルスチェックでなければ検知できないサーバ障害はどれか。</summary>
-    <ul class="qopts"><li><b>ア</b> 電源断</li><li><b>イ</b> NICのリンクダウン</li><li><b>ウ</b> OSは動作しているがWebアプリがエラー応答を返す状態</li><li><b>エ</b> ケーブル断</li></ul>
-    <div class="ans"><p><span class="a">正解: ウ</span> — pingやTCP接続(L3/L4)は通るのにアプリだけ死んでいる状態は、HTTPの応答内容まで確認するL7チェックでしか検知できない(第7章)。</p></div>
-  </details>
-
-  <details class="qa"><summary>Q10. IPv6でARPの代わりに近隣のMACアドレス(リンク層アドレス)解決を行う仕組みはどれか。</summary>
-    <ul class="qopts"><li><b>ア</b> SLAAC</li><li><b>イ</b> DHCPv6</li><li><b>ウ</b> NDP(近隣探索プロトコル)</li><li><b>エ</b> RAプロキシ</li></ul>
-    <div class="ans"><p><span class="a">正解: ウ</span> — IPv6はブロードキャストを廃止し、ICMPv6ベースのNDPがマルチキャストで近隣探索を行う。SLAACはアドレス自動設定、RAはルータ広告(第8章)。</p></div>
-  </details>
-</section>
-
-<!-- ================= §6 リソース ================= -->
-<section id="resources">
-  <div class="eyebrow"><span class="no">§6</span><h2>教材・リソース集</h2></div>
-
-  <h3><span class="h3tag">6-1</span>無料(必須)</h3>
-  <div class="card">
-    <p style="margin-top:0"><b><a href="https://www.ipa.go.jp/shiken/mondai-kaiotu/index.html">IPA 公式過去問題・解答例・採点講評</a></b><br>
-    この試験の最重要教材。問題冊子だけでなく<strong>解答例</strong>と<strong>採点講評</strong>まで必ずセットで使う。IPAは過去問の利用に許諾不要と明言しており、無料でダウンロードできる。</p>
-    <p style="margin-bottom:0"><b><a href="https://www.nw-siken.com/nwkakomon.php">ネットワークスペシャリスト過去問道場(nw-siken.com)</a></b><br>
-    午前II過去問(約400問)を無料でランダム演習できる定番サイト。スマホでスキマ時間に回す用途に最適。Phase 2以降、毎日20〜30問。</p>
+  <h3>基礎講座 III — 設計と最新技術</h3>
+  <div class="chapgrid">
+    <a class="chapcard" href="ch09.html"><span class="cno">第9章</span><span class="ct"><b>冗長化・負荷分散・運用管理</b><small>VRRP・LB・稼働率計算・SNMP・QoS</small></span><span class="cdone">✓</span></a>
+    <a class="chapcard" href="ch10.html"><span class="cno">第10章</span><span class="ct"><b>無線LAN</b><small>802.11規格・チャネル設計・ローミング・WPA3・802.1X</small></span><span class="cdone">✓</span></a>
+    <a class="chapcard" href="ch11.html"><span class="cno">第11章</span><span class="ct"><b>IPv6</b><small>2025年度午後IIテーマ。アドレス体系・NDP・SLAAC・移行技術</small></span><span class="cdone">✓</span></a>
+    <a class="chapcard" href="ch12.html"><span class="cno">第12章</span><span class="ct"><b>クラウド・データセンター・仮想化</b><small>閉域接続・マルチクラウド・VXLAN/EVPN・SDN・IoT</small></span><span class="cdone">✓</span></a>
   </div>
 
-  <h3><span class="h3tag">6-2</span>書籍(推奨の組み合わせ)</h3>
-  <div class="tablewrap"><table>
-    <thead><tr><th>フェーズ</th><th>書籍</th><th>用途</th></tr></thead>
-    <tbody>
-      <tr><td>Phase 1</td><td>『マスタリングTCP/IP 入門編』または『3分間ネットワーク基礎講座』</td><td>本教材の基礎講座と並走する入門書。プロトコルの動作イメージ作り</td></tr>
-      <tr><td>Phase 1〜2</td><td>『徹底攻略 ネットワークスペシャリスト教科書 令和8年度』(インプレス)</td><td>試験範囲を体系的に網羅する教科書。辞書としても使う</td></tr>
-      <tr><td>Phase 3〜4</td><td>『ネスペR7』ほか左門至峰「ネスペ」シリーズ(年度別)</td><td>午後過去問の詳細解説。解答根拠の拾い方を学ぶ午後対策の定番。複数年度分やると効果大</td></tr>
-    </tbody>
-  </table></div>
-  <p class="caption">最小構成なら「入門書1冊+ネスペシリーズ2〜3冊+過去問道場」で戦える。教科書は通読せず辞書的に使うのがコツ。</p>
-
-  <h3><span class="h3tag">6-3</span>動画・その他</h3>
-  <p>YouTubeで「<a href="https://www.youtube.com/results?search_query=%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF%E3%82%B9%E3%83%9A%E3%82%B7%E3%83%A3%E3%83%AA%E3%82%B9%E3%83%88+%E5%8D%88%E5%BE%8C+%E8%A7%A3%E8%AA%AC">ネットワークスペシャリスト 午後 解説</a>」で年度別・テーマ別の解説動画が見つかる。通勤中の復習に。パケットの動きを実際に見るなら<strong>Wireshark</strong>(無料)を一度は触ること(§2-4)。</p>
-
-  <div class="tip"><span class="tt">申込を忘れずに</span>2026年度前期試験(CBT)の申込受付時期は本教材作成時点で未発表。<a href="https://www.ipa.go.jp/shiken/kubun/nw.html">IPAのNW試験ページ</a>を毎月1日にチェックする予定をカレンダーに登録すること。</div>
+  <h3>試験対策</h3>
+  <div class="chapgrid">
+    <a class="chapcard" href="pm-guide.html"><span class="cno">対策</span><span class="ct"><b>午後試験 読解メソッド</b><small>本文根拠主義・時間配分・設問型辞典・解答の書き方講座</small></span><span class="cdone">✓</span></a>
+    <a class="chapcard" href="pm-practice.html"><span class="cno">演習</span><span class="ct"><b>午後演習 — オリジナル事例問題</b><small>午後I形式の書き下ろし事例2題+模範解答・採点基準</small></span><span class="cdone">✓</span></a>
+    <a class="chapcard" href="am2-drill.html"><span class="cno">演習</span><span class="ct"><b>午前II 模擬演習 50問</b><small>本試験2回分相当のオリジナル四択。分野別</small></span><span class="cdone">✓</span></a>
+    <a class="chapcard" href="glossary.html"><span class="cno">辞書</span><span class="ct"><b>用語集</b><small>頻出150語をカテゴリ別に。復習・直前確認用</small></span><span class="cdone">✓</span></a>
+    <a class="chapcard" href="resources.html"><span class="cno">資料</span><span class="ct"><b>教材・リンク集・出典</b><small>IPA過去問の使い方・過去問道場・書籍・全出典</small></span><span class="cdone">✓</span></a>
+  </div>
 </section>
 
-<!-- ================= §7 出典 ================= -->
-<section id="sources">
-  <div class="eyebrow"><span class="no">§7</span><h2>出典・調査情報</h2></div>
-  <p>本教材の試験制度・統計・出題実績はすべて2026年7月4日時点のWeb調査(Codexによる検索・確認)に基づく。技術解説・学習戦略・演習問題はClaudeによる書き下ろし。</p>
-  <ul class="srcs">
-    <li>IPA ネットワークスペシャリスト試験(制度・形式) — https://www.ipa.go.jp/shiken/kubun/nw.html</li>
-    <li>IPA 2026年度 実施予定(CBT移行・前期試験) — https://www.ipa.go.jp/shiken/2026/ap_koudo_sc_yotei.html / https://www.ipa.go.jp/shiken/2026/ap_koudo_sc-cbt.html</li>
-    <li>IPA 令和7年度春期試験案内(試験日・手数料) — https://www.ipa.go.jp/shiken/2025/r07haru_exam.html</li>
-    <li>IPA 試験要綱 Ver.5.5(合格基準・多段階選抜・出題範囲) — https://www.ipa.go.jp/shiken/syllabus/omgdg50000005kle-att/youkou_ver5_5.pdf</li>
-    <li>IPA NWシラバス Ver.4.1 — https://www.ipa.go.jp/shiken/syllabus/nq6ept00000014fp-att/syllabus_nw_ver4_1.pdf</li>
-    <li>IPA 午前I試験免除制度 — https://www.ipa.go.jp/shiken/about/koudo_menjo.html</li>
-    <li>IPA 統計情報(応募者・合格率・平均年齢) — https://www.ipa.go.jp/shiken/reports/toukei.html</li>
-    <li>IPA 過去問題・解答例・採点講評 — https://www.ipa.go.jp/shiken/mondai-kaiotu/index.html</li>
-    <li>IPA 令和7年度春期 NW午後I/午後II問題冊子(2025年度出題テーマ) — https://www.ipa.go.jp/shiken/mondai-kaiotu/2025r07.html</li>
-    <li>IPA 2024・2023年度春期 NW午後問題冊子(出題テーマ) — 同上の年度別ページより</li>
-    <li>ネットワークスペシャリスト過去問道場 — https://www.nw-siken.com/nwkakomon.php</li>
-    <li>ネットワークスペシャリスト.com 参考書情報(ネスペR7・徹底攻略 令和8年度) — https://www.nw-siken.com/nwtext.html</li>
+<section id="next">
+  <div class="eyebrow"><span class="no">今日</span><h2>今日やること(迷ったら)</h2></div>
+  <ul>
+    <li><strong>初めて来た日:</strong> <a href="exam.html">§1</a>→<a href="strategy.html">§2</a>を読み、スマホのカレンダーに「毎月1日: IPAで申込日程確認」を登録する。</li>
+    <li><strong>平日(30〜60分):</strong> 進行中の章の続き、または<a href="am2-drill.html">午前II演習</a>・<a href="https://www.nw-siken.com/nwkakomon.php">過去問道場</a>を20問。</li>
+    <li><strong>週末(2〜3時間):</strong> 章をひとつ仕上げる(本文+例題+章末テスト)。Phase 3以降は午後過去問を1問、時間を計って。</li>
   </ul>
-  <p class="caption">試験制度は変更されることがある。特にCBT移行初年度のため、受験前に必ずIPA公式の最新発表を確認すること。</p>
 </section>
+
 </main>
-<footer>ネスペ2026 合格教材 — 調査: Codex(Web検索)/戦略・執筆: Claude/2026年7月4日版</footer>
+<div id="site-footer"></div>
+<script src="assets/site.js"></script>
 <script>
 (function(){
-  var root=document.documentElement;
-  var saved=localStorage.getItem('nw-theme');
-  if(saved){root.setAttribute('data-theme',saved);}
-  document.getElementById('themeBtn').addEventListener('click',function(){
-    var cur=root.getAttribute('data-theme');
-    if(!cur){cur=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}
-    var next=cur==='dark'?'light':'dark';
-    root.setAttribute('data-theme',next);
-    localStorage.setItem('nw-theme',next);
+  var done=(window.NW_getDone&&window.NW_getDone())||[];
+  var cards=document.querySelectorAll("a.chapcard");
+  var total=cards.length, n=0;
+  cards.forEach(function(c){
+    var f=c.getAttribute("href");
+    if(done.indexOf(f)>=0){c.classList.add("done");n++;}
   });
-  var toc=document.getElementById('toc'),scrim=document.getElementById('scrim'),btn=document.getElementById('menuBtn');
-  function close(){toc.classList.remove('open');scrim.classList.remove('show');btn.setAttribute('aria-expanded','false');}
-  btn.addEventListener('click',function(){
-    var open=toc.classList.toggle('open');
-    scrim.classList.toggle('show',open);
-    btn.setAttribute('aria-expanded',open?'true':'false');
-  });
-  scrim.addEventListener('click',close);
-  toc.addEventListener('click',function(e){if(e.target.tagName==='A'){close();}});
+  var pv=document.getElementById("pv"),pb=document.getElementById("pbar");
+  if(pv){pv.textContent=n+" / "+total;}
+  if(pb){pb.style.width=(total?Math.round(n*100/total):0)+"%";}
 })();
 </script>
 </body>

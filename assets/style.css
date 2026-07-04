@@ -1,0 +1,226 @@
+/* ネスペ2026 合格教材 — 共通デザインシステム */
+:root{
+  --bg:#F6F8F5; --panel:#FFFFFF; --ink:#202B30; --muted:#5D6C71; --line:#DCE3DE;
+  --accent:#0E7C86; --accent-strong:#0A5960; --accent-soft:#E3F0F1;
+  --warm:#B05A0A; --warm-bg:#FAF0E2; --warm-line:#EBD9BF;
+  --code-bg:#EDF1EE; --chip:#EDF3F1; --shadow:0 1px 3px rgba(32,43,48,.08);
+  --ok:#2E7D46; --ok-bg:#E7F2EA; --danger:#B3423A; --danger-bg:#F7E9E7;
+}
+:root[data-theme="dark"]{
+  --bg:#0F171B; --panel:#16222A; --ink:#D8E3E1; --muted:#8DA0A2; --line:#263740;
+  --accent:#48BBC6; --accent-strong:#83D5DD; --accent-soft:#12333A;
+  --warm:#E39A50; --warm-bg:#2B2013; --warm-line:#4A3418;
+  --code-bg:#1B2B33; --chip:#1C2E36; --shadow:0 1px 3px rgba(0,0,0,.4);
+  --ok:#5FBF7E; --ok-bg:#15291C; --danger:#E07A72; --danger-bg:#33201E;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F171B; --panel:#16222A; --ink:#D8E3E1; --muted:#8DA0A2; --line:#263740;
+    --accent:#48BBC6; --accent-strong:#83D5DD; --accent-soft:#12333A;
+    --warm:#E39A50; --warm-bg:#2B2013; --warm-line:#4A3418;
+    --code-bg:#1B2B33; --chip:#1C2E36; --shadow:0 1px 3px rgba(0,0,0,.4);
+    --ok:#5FBF7E; --ok-bg:#15291C; --danger:#E07A72; --danger-bg:#33201E;
+  }
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth; scroll-padding-top:64px}
+@media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} *{animation:none!important;transition:none!important} }
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP","Yu Gothic UI","Yu Gothic",Meiryo,system-ui,sans-serif;
+  font-size:16px; line-height:1.9; -webkit-text-size-adjust:100%;
+}
+code,pre,.mono{font-family:ui-monospace,"SF Mono","Cascadia Mono","Consolas",Menlo,monospace}
+a{color:var(--accent); text-decoration:none}
+a:hover{text-decoration:underline}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var(--accent); outline-offset:2px; border-radius:3px}
+
+/* ---- topbar / drawer (site.jsが生成) ---- */
+.topbar{
+  position:sticky; top:0; z-index:50; background:var(--panel);
+  border-bottom:1px solid var(--line); box-shadow:var(--shadow);
+  display:flex; align-items:center; gap:10px; padding:10px 14px;
+}
+.topbar .brand{font-weight:800; font-size:15px; letter-spacing:.02em; flex:1; min-width:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; color:var(--ink)}
+.topbar .brand:hover{text-decoration:none; color:var(--accent)}
+.topbar .brand .yr{color:var(--accent); font-weight:800}
+.iconbtn{
+  background:none; border:1px solid var(--line); color:var(--ink); border-radius:8px;
+  padding:6px 10px; font-size:13px; cursor:pointer; line-height:1.4; flex-shrink:0;
+  font-family:inherit;
+}
+.iconbtn:hover{border-color:var(--accent); color:var(--accent)}
+#toc{
+  position:fixed; top:49px; right:0; bottom:0; width:min(330px,88vw); z-index:49;
+  background:var(--panel); border-left:1px solid var(--line);
+  transform:translateX(105%); transition:transform .25s ease;
+  overflow-y:auto; padding:14px 18px 44px;
+}
+#toc.open{transform:translateX(0)}
+#toc .toc-group{font-size:11px; font-weight:700; letter-spacing:.14em; color:var(--muted); margin:16px 0 5px}
+#toc a{display:block; padding:6px 8px; border-radius:6px; color:var(--ink); font-size:14px; line-height:1.6}
+#toc a:hover{background:var(--accent-soft); text-decoration:none}
+#toc a.cur{background:var(--accent-soft); font-weight:700}
+#toc a .no{color:var(--accent); font-weight:700; font-size:12px; margin-right:7px}
+#toc a .dn{color:var(--ok); font-size:12px; margin-left:5px}
+#scrim{position:fixed; inset:0; z-index:48; background:rgba(15,23,27,.45); opacity:0; pointer-events:none; transition:opacity .25s}
+#scrim.show{opacity:1; pointer-events:auto}
+
+/* ---- layout ---- */
+main{max-width:760px; margin:0 auto; padding:0 18px 40px}
+section{margin-top:56px}
+.pagehead{padding:38px 0 0}
+.pagehead .kicker{font-size:12px; font-weight:700; letter-spacing:.16em; color:var(--accent)}
+.pagehead .lede{color:var(--muted); font-size:15.5px; margin-top:8px}
+.eyebrow{
+  display:flex; align-items:baseline; gap:10px; border-bottom:2px solid var(--accent);
+  padding-bottom:8px; margin-bottom:20px;
+}
+.eyebrow .no{font-family:ui-monospace,Menlo,monospace; color:var(--accent); font-weight:700; font-size:14px; letter-spacing:.08em; white-space:nowrap}
+h1{font-size:clamp(25px,6vw,36px); line-height:1.35; margin:.2em 0; text-wrap:balance; font-weight:800}
+h2{font-size:clamp(21px,5vw,26px); line-height:1.4; margin:0; text-wrap:balance; font-weight:800}
+h3{font-size:18px; margin:34px 0 10px; font-weight:700; text-wrap:balance}
+h3 .h3tag{color:var(--accent); margin-right:6px}
+h4{font-size:15.5px; margin:24px 0 6px; font-weight:700}
+p{margin:.7em 0}
+ul,ol{padding-left:1.4em; margin:.6em 0}
+li{margin:.35em 0}
+strong{font-weight:700}
+em{font-style:normal; font-weight:700; background:linear-gradient(transparent 68%, var(--accent-soft) 68%)}
+hr{border:none; border-top:1px solid var(--line); margin:40px 0}
+
+/* ---- components ---- */
+.card{background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:18px 20px; margin:16px 0; box-shadow:var(--shadow)}
+.tablewrap{overflow-x:auto; margin:14px 0; border:1px solid var(--line); border-radius:10px; background:var(--panel)}
+table{border-collapse:collapse; width:100%; font-size:14px; min-width:480px}
+th,td{padding:9px 12px; text-align:left; border-bottom:1px solid var(--line); vertical-align:top; line-height:1.7}
+thead th{background:var(--accent-soft); color:var(--accent-strong); font-size:12.5px; letter-spacing:.04em; white-space:nowrap}
+tbody tr:last-child td{border-bottom:none}
+td.num,th.num{text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap}
+.tip{
+  background:var(--warm-bg); border:1px solid var(--warm-line); border-radius:10px;
+  padding:14px 16px; margin:16px 0; font-size:14.5px;
+}
+.tip .tt{display:block; font-weight:800; color:var(--warm); font-size:12.5px; letter-spacing:.1em; margin-bottom:4px}
+.exam{
+  background:var(--accent-soft); border:1px solid var(--line); border-left:4px solid var(--accent);
+  border-radius:0 10px 10px 0; padding:13px 16px; margin:16px 0; font-size:14.5px;
+}
+.exam .tt{display:block; font-weight:800; color:var(--accent-strong); font-size:12.5px; letter-spacing:.1em; margin-bottom:4px}
+.goalbox{background:var(--chip); border-radius:8px; padding:10px 14px; font-size:14px; margin:10px 0}
+.goalbox b{color:var(--accent-strong)}
+.chips{display:flex; flex-wrap:wrap; gap:7px; margin:12px 0}
+.chips span{
+  background:var(--chip); border:1px solid var(--line); border-radius:999px;
+  padding:3px 12px; font-size:13px; line-height:1.7; white-space:nowrap;
+}
+pre.topo{
+  background:var(--code-bg); border:1px solid var(--line); border-radius:10px;
+  padding:14px 16px; overflow-x:auto; font-size:12.5px; line-height:1.55; margin:14px 0;
+}
+code{background:var(--code-bg); border-radius:4px; padding:1px 5px; font-size:.88em}
+pre code{background:none; padding:0}
+.caption{font-size:12.5px; color:var(--muted); margin-top:-6px; margin-bottom:14px}
+
+/* 例題(ワーク) */
+.example{background:var(--panel); border:1px solid var(--line); border-radius:12px; margin:18px 0; overflow:hidden; box-shadow:var(--shadow)}
+.example .exq{padding:14px 18px; font-size:14.5px}
+.example .exq .tt{display:block; font-weight:800; color:var(--accent-strong); font-size:12.5px; letter-spacing:.1em; margin-bottom:4px}
+.example details{border-top:1px dashed var(--line)}
+.example details summary{padding:10px 18px; cursor:pointer; font-weight:700; font-size:13.5px; color:var(--accent); list-style:none}
+.example details summary::-webkit-details-marker{display:none}
+.example details summary::before{content:"▸ "; color:var(--accent)}
+.example details[open] summary::before{content:"▾ "}
+.example .exa{padding:0 18px 14px; font-size:14.5px}
+
+/* レイヤ図 */
+.layers{display:grid; gap:6px; margin:14px 0}
+.layer{display:grid; grid-template-columns:44px 1fr; border:1px solid var(--line); border-radius:8px; overflow:hidden; background:var(--panel); font-size:13.5px}
+.layer .ln{display:flex; align-items:center; justify-content:center; background:var(--accent-soft); color:var(--accent-strong); font-weight:800; font-family:ui-monospace,Menlo,monospace}
+.layer .lb{padding:8px 12px; line-height:1.6}
+.layer .lb b{display:block}
+.layer .lb small{color:var(--muted)}
+
+/* ロードマップ */
+.phase{border-left:3px solid var(--accent); padding:2px 0 6px 18px; margin:22px 0; position:relative}
+.phase::before{content:""; position:absolute; left:-8px; top:6px; width:13px; height:13px; border-radius:50%; background:var(--accent); border:3px solid var(--bg)}
+.phase .ph{font-weight:800; font-size:16px}
+.phase .pw{color:var(--muted); font-size:13px; font-weight:700; letter-spacing:.04em}
+
+/* Q&A(クイズ) */
+details.qa{background:var(--panel); border:1px solid var(--line); border-radius:10px; margin:12px 0; overflow:hidden}
+details.qa summary{padding:14px 16px; cursor:pointer; font-weight:700; font-size:14.5px; line-height:1.8; list-style:none; position:relative; padding-right:38px}
+details.qa summary::after{content:"＋"; position:absolute; right:14px; top:12px; color:var(--accent); font-weight:800}
+details.qa[open] summary::after{content:"－"}
+details.qa summary::-webkit-details-marker{display:none}
+details.qa .ans{padding:0 16px 14px; font-size:14.5px; border-top:1px dashed var(--line)}
+details.qa .ans .a{font-weight:800; color:var(--ok)}
+.qopts{list-style:none; padding:4px 16px 12px; margin:0; font-size:14.5px}
+.qopts li{margin:.3em 0}
+.qopts li b{font-family:ui-monospace,Menlo,monospace; color:var(--accent); margin-right:6px}
+
+/* 統計バー */
+.bar{display:flex; align-items:center; gap:10px; margin:6px 0; font-size:13px}
+.bar .bl{width:9.5em; flex-shrink:0; text-align:right; color:var(--muted); font-variant-numeric:tabular-nums}
+.bar .bt{height:14px; background:var(--accent); border-radius:3px; min-width:2px}
+.bar .bv{font-variant-numeric:tabular-nums; font-weight:700}
+
+/* ステータス表示 */
+.stat{background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:12px 14px; box-shadow:var(--shadow)}
+.stat .v{font-size:22px; font-weight:800; font-variant-numeric:tabular-nums; line-height:1.3}
+.stat .v small{font-size:13px; font-weight:600; color:var(--muted)}
+.stat .k{font-size:12px; color:var(--muted); margin-top:2px}
+.stat.hot .v{color:var(--accent)}
+.statrow{display:grid; grid-template-columns:repeat(auto-fit,minmax(130px,1fr)); gap:10px; margin-top:22px}
+
+/* ホームの章カード */
+.chapgrid{display:grid; gap:10px; margin:14px 0}
+a.chapcard{
+  display:grid; grid-template-columns:auto 1fr auto; gap:12px; align-items:center;
+  background:var(--panel); border:1px solid var(--line); border-radius:10px;
+  padding:12px 14px; color:var(--ink); box-shadow:var(--shadow);
+}
+a.chapcard:hover{border-color:var(--accent); text-decoration:none}
+a.chapcard .cno{font-family:ui-monospace,Menlo,monospace; color:var(--accent); font-weight:800; font-size:12.5px; white-space:nowrap}
+a.chapcard .ct b{display:block; font-size:14.5px; line-height:1.55}
+a.chapcard .ct small{color:var(--muted); font-size:12.5px; line-height:1.5; display:block}
+a.chapcard .cdone{font-size:17px; color:var(--ok); visibility:hidden}
+a.chapcard.done .cdone{visibility:visible}
+.progresswrap{background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:14px 18px; margin:18px 0; box-shadow:var(--shadow)}
+.progressbar{height:10px; background:var(--chip); border-radius:999px; overflow:hidden; margin-top:8px}
+.progressbar i{display:block; height:100%; background:var(--accent); border-radius:999px; transition:width .3s}
+.progresswrap .pl{font-size:13px; color:var(--muted)}
+.progresswrap .pv{font-weight:800; font-variant-numeric:tabular-nums}
+
+/* ページ下部ナビ(site.jsが生成) */
+.pnav{display:flex; gap:10px; margin:44px 0 0; flex-wrap:wrap}
+.pnav a{
+  flex:1; min-width:150px; background:var(--panel); border:1px solid var(--line); border-radius:10px;
+  padding:12px 14px; color:var(--ink); font-size:13.5px; line-height:1.6;
+}
+.pnav a:hover{border-color:var(--accent); text-decoration:none}
+.pnav a small{display:block; color:var(--muted); font-size:11.5px; letter-spacing:.08em}
+.pnav a.next{text-align:right}
+.donewrap{margin:36px 0 0; text-align:center}
+.donebtn{
+  background:var(--panel); border:1.5px solid var(--accent); color:var(--accent);
+  border-radius:999px; padding:10px 22px; font-size:14px; font-weight:700; cursor:pointer; font-family:inherit;
+}
+.donebtn.on{background:var(--accent); color:#fff}
+:root[data-theme="dark"] .donebtn.on{color:#0F171B}
+
+footer.sitefoot{border-top:1px solid var(--line); margin-top:70px; padding:26px 18px 60px; color:var(--muted); font-size:13px; text-align:center}
+.srcs{font-size:13.5px; word-break:break-all}
+.srcs li{margin:.5em 0}
+.badge-cbt{display:inline-block; background:var(--accent); color:#fff; border-radius:6px; font-size:11.5px; font-weight:800; padding:2px 8px; vertical-align:2px; letter-spacing:.06em}
+:root[data-theme="dark"] .badge-cbt{color:#0F171B}
+.hero{padding:44px 0 8px}
+.hero .kicker{font-size:12.5px; font-weight:700; letter-spacing:.18em; color:var(--accent); text-transform:uppercase}
+.hero .lede{color:var(--muted); font-size:15.5px; margin-top:10px}
+
+@media (max-width:560px){
+  body{font-size:15.5px}
+  .card{padding:15px 15px}
+  main{padding:0 14px 40px}
+  table{font-size:13.5px}
+}
